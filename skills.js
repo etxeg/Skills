@@ -1,111 +1,86 @@
-// Asegúrate de que el contenedor esté definido correctamente
-let container = document.querySelector('body > div');
+let container = document.querySelector('.svg-container');
 
-window.onload = async function() { 
+window.onload = async function() {
     try {
-        // Obtener el archivo JSON
         let response = await fetch('./scripts/data.json');
         if (!response.ok) throw new Error('Error al cargar el JSON');
-        
+
         let data = await response.json();
 
-        // Iterar sobre los datos y crear tarjetas
         for (let i = 0; i < data.length; i++) {
-            // Suponiendo que cada entrada en data tiene una propiedad `id`
-            let imagen = `../scripts/Public/electronics/icons/icon${data[i].id}.svg`;
-            createSkillCard(data[i].text || "Título por defecto", data[i].id, imagen);
+            let imagen = `./scripts/Public/electronics/icons/icon${data[i].id}.svg`;
+            createSkillCard(data[i], imagen);
         }
     } catch (error) {
         console.error('Error al cargar los datos:', error);
     }
 };
 
-function createSkillCard(data, id, imagen) {
-    // Crear el contenedor principal (puedes descomentar si necesitas)
+function createSkillCard(data, imagen) {
     let carta = document.createElement('div');
     carta.classList.add('svg-wrapper');
-    carta.setAttribute('data-id', id);
+    carta.setAttribute('data-id', data.id);
     carta.setAttribute('data-custom', 'false');
 
-    // Crear el elemento SVG
     let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("id", "svg");
     svg.setAttribute("width", "100");
     svg.setAttribute("height", "100");
     svg.setAttribute("viewBox", "0 0 100 100");
 
-    // Crear el polígono hexagonal
     let polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
     polygon.setAttribute("points", "50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5");
     polygon.classList.add("hexagon");
-    svg.appendChild(polygon); // Agregar el hexágono al SVG
+    svg.appendChild(polygon);
 
-    // Crear el texto
+    // Crear el elemento de texto y ajustar la posición inicial y el espaciado
     let text = document.createElementNS("http://www.w3.org/2000/svg", "text");
     text.setAttribute("x", "50%");
-    text.setAttribute("y", "20%");
+    text.setAttribute("y", "25");  // Posición inicial más alta
     text.setAttribute("text-anchor", "middle");
+    text.setAttribute("font-size", "8");
+    text.setAttribute("font-family", "Arial");
     text.setAttribute("fill", "black");
-    text.setAttribute("font-size", "10");
     text.setAttribute("font-weight", "bold");
 
-    // Dividir el texto de data en líneas
-    let words = data.split(' '); // Dividir por espacios
+    // Dividir el texto en líneas de acuerdo con el límite de caracteres por línea
+    let maxCharsPerLine = 20;
+    let words = data.text.split(' ');
     let line = '';
-    let maxWidth = 80; // Ancho máximo permitido dentro del hexágono
+    let dyIncrement = 1.2;  // Incremento para el desplazamiento vertical
 
-    // Crear tspans y añadir texto
     for (let word of words) {
-        let testLine = line + word + ' ';
-        let testText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        testText.setAttribute("font-size", "10");
-        testText.textContent = testLine;
-
-        // Crear un SVG temporal para medir el ancho
-        svg.appendChild(testText);
-        let textWidth = testText.getBBox().width;
-        svg.removeChild(testText);
-
-        if (textWidth > maxWidth && line) {
-            // Si la línea excede el ancho máximo, agregar el tspans
+        if ((line + word).length > maxCharsPerLine) {
             let tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
             tspan.setAttribute("x", "50%");
-            tspan.setAttribute("dy", "1.2em");
-            tspan.setAttribute("font-weight", "bold");
-            tspan.textContent = line.trim(); // Agregar línea completa
+            tspan.setAttribute("dy", `${dyIncrement}em`);  // Incremento acumulativo
+            tspan.textContent = line.trim();
             text.appendChild(tspan);
-
-            // Reiniciar línea
             line = word + ' ';
         } else {
-            line = testLine;
+            line += word + ' ';
         }
     }
 
-    // Agregar la última línea si no está vacía
+    // Agregar la última línea
     if (line) {
         let tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
         tspan.setAttribute("x", "50%");
-        tspan.setAttribute("dy", "1.2em");
-        tspan.setAttribute("font-weight", "bold");
+        tspan.setAttribute("dy", `${dyIncrement}em`);
         tspan.textContent = line.trim();
         text.appendChild(tspan);
     }
 
     svg.appendChild(text);
 
-    // Crear la imagen SVG
+    // Agregar la imagen
     let image = document.createElementNS("http://www.w3.org/2000/svg", "image");
     image.setAttribute("x", "35%");
-    image.setAttribute("y", "50%"); // Cambiado a 50% para centrar mejor
+    image.setAttribute("y", "60%");
     image.setAttribute("width", "30");
     image.setAttribute("height", "30");
     image.setAttribute("href", imagen);
 
-    // Añadir la imagen al SVG
     svg.appendChild(image);
-
-    // Añadir el SVG al contenedor principal
-    carta.appendChild(svg); // Agregar el SVG a la carta
-    container.appendChild(carta); // Agregar la carta al contenedor
+    carta.appendChild(svg);
+    container.appendChild(carta);
 }
