@@ -37,16 +37,16 @@ function createSkillCard(data, imagen) {
     text.setAttribute("x", "50%");
     text.setAttribute("y", "25");  // Posición inicial más alta
     text.setAttribute("text-anchor", "middle");
-    text.setAttribute("font-size", "8");
+    text.setAttribute("font-size", "9");
     text.setAttribute("font-family", "Arial");
     text.setAttribute("fill", "black");
     text.setAttribute("font-weight", "bold");
 
     // Dividir el texto en líneas de acuerdo con el límite de caracteres por línea
-    let maxCharsPerLine = 20;
+    let maxCharsPerLine = 18;
     let words = data.text.split(' ');
     let line = '';
-    let dyIncrement = 1.2;  // Incremento para el desplazamiento vertical
+    let dyIncrement = 1;  // Incremento para el desplazamiento vertical
 
     for (let word of words) {
         if ((line + word).length > maxCharsPerLine) {
