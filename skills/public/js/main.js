@@ -1,22 +1,86 @@
-fetch("data.json")
-    .then(response => response.json())
-    .then(icons => {
-        const iconsContainer = document.querySelector(".svg-container");
+let container = document.querySelector('.svg-container');
 
-        icons.forEach((icon  => {
-            //wrapper for each icon
-            const svgWrapper = document.createElement("div");
-            svgWrapper.setAttribute("class", "svg-wrapper");
-            svgWrapper.setAttribute("data-id", icon.id);
-            svgWrapper.setAttribute("data-custom", "false");
+window.onload = async function() {
+    try {
+        let response = await fetch('./scripts/data.json');
+        if (!response.ok) throw new Error('Error al cargar el JSON');
 
-            //svg element
-            const svg = document.createElement("svg");
-            svg.setAttribute("width", "100");  
-            svg.setAttribute("height", "100");
-            svg.setAttribute("viewBox", "0 0 100 100");
+        let data = await response.json();
 
-            //hexagon
-            const hexagon = document.createElement("polygon");
-            hexagon.setAttribute("points", "50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5");
+        for (let i = 0; i < data.length; i++) {
+            let imagen = `./scripts/Public/electronics/icons/icon${data[i].id}.svg`;
+            createSkillCard(data[i], imagen);
+        }
+    } catch (error) {
+        console.error('Error al cargar los datos:', error);
+    }
+};
 
+function createSkillCard(data, imagen) {
+    let carta = document.createElement('div');
+    carta.classList.add('svg-wrapper');
+    carta.setAttribute('data-id', data.id);
+    carta.setAttribute('data-custom', 'false');
+
+    let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", "100");
+    svg.setAttribute("height", "100");
+    svg.setAttribute("viewBox", "0 0 100 100");
+
+    let polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    polygon.setAttribute("points", "50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5");
+    polygon.classList.add("hexagon");
+    svg.appendChild(polygon);
+
+    // Crear el elemento de texto y ajustar la posición inicial y el espaciado
+    let text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    text.setAttribute("x", "50%");
+    text.setAttribute("y", "25");  // Posición inicial más alta
+    text.setAttribute("text-anchor", "middle");
+    text.setAttribute("font-size", "9");
+    text.setAttribute("font-family", "Arial");
+    text.setAttribute("fill", "black");
+    text.setAttribute("font-weight", "bold");
+
+    // Dividir el texto en líneas de acuerdo con el límite de caracteres por línea
+    let maxCharsPerLine = 18;
+    let words = data.text.split(' ');
+    let line = '';
+    let dyIncrement = 1;  // Incremento para el desplazamiento vertical
+
+    for (let word of words) {
+        if ((line + word).length > maxCharsPerLine) {
+            let tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+            tspan.setAttribute("x", "50%");
+            tspan.setAttribute("dy", `${dyIncrement}em`);  // Incremento acumulativo
+            tspan.textContent = line.trim();
+            text.appendChild(tspan);
+            line = word + ' ';
+        } else {
+            line += word + ' ';
+        }
+    }
+
+    // Agregar la última línea
+    if (line) {
+        let tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+        tspan.setAttribute("x", "50%");
+        tspan.setAttribute("dy", `${dyIncrement}em`);
+        tspan.textContent = line.trim();
+        text.appendChild(tspan);
+    }
+
+    svg.appendChild(text);
+
+    // Agregar la imagen
+    let image = document.createElementNS("http://www.w3.org/2000/svg", "image");
+    image.setAttribute("x", "35%");
+    image.setAttribute("y", "60%");
+    image.setAttribute("width", "30");
+    image.setAttribute("height", "30");
+    image.setAttribute("href", imagen);
+
+    svg.appendChild(image);
+    carta.appendChild(svg);
+    container.appendChild(carta);
+}
