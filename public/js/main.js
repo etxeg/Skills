@@ -2,13 +2,13 @@ let container = document.querySelector('.svg-container');
 
 window.onload = async function() {
     try {
-        let response = await fetch('./scripts/data.json');
+        let response = await fetch('/scripts/data.json');
         if (!response.ok) throw new Error('Error al cargar el JSON');
 
         let data = await response.json();
 
-        for (let i = 0; i < data.length; i++) {
-            let imagen = `./scripts/Public/electronics/icons/icon${data[i].id}.svg`;
+        for (let i = 0; i < data.length-1; i++) {
+            let imagen = `/electronics/icons/icon${data[i].id}.svg`;
             createSkillCard(data[i], imagen);
         }
     } catch (error) {
