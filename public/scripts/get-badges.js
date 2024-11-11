@@ -8,8 +8,8 @@ if (!fs.existsSync(badgesDir)) {
   fs.mkdirSync(badgesDir);
 }
 
-const datajson = require('./data.json');
-const badgeLinks = datajson.map((item) => item.icon); //mirar como pillar bien los badges, item.icon??
+const datajson = require('./databadget.json');
+const badgeLinks = datajson.map((item) => item.png); //mirar como pillar bien los badges, item.icon??
 
 const downloadBadge = async (url, filename) => {
   try {
