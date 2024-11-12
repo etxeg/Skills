@@ -11,9 +11,18 @@ window.onload = async function() {
             let imagen = `/electronics/icons/icon${data[i].id}.svg`;
             createSkillCard(data[i], imagen);
         }
+
+        let buttons = document.querySelectorAll('.svg-wrapper');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', handleButtonHover);
+            button.addEventListener('mouseleave', handleButtonHover);
+        });
+
     } catch (error) {
         console.error('Error al cargar los datos:', error);
     }
+
+    
 };
 
 function createSkillCard(data, imagen) {
@@ -83,4 +92,32 @@ function createSkillCard(data, imagen) {
     svg.appendChild(image);
     carta.appendChild(svg);
     container.appendChild(carta);
+
+    // Pencil icon (hover effect)
+    let pencilIcon = document.createElement('div');
+    pencilIcon.classList.add('icon', 'pencil-icon');
+    pencilIcon.innerHTML = '✏️';  // You can replace with SVG icon if available
+    carta.appendChild(pencilIcon);
+
+    // Notebook icon (hover effect)
+    let notebookIcon = document.createElement('div');
+    notebookIcon.classList.add('icon', 'notebook-icon');
+    notebookIcon.innerHTML = '📒';  // You can replace with SVG icon if available
+    carta.appendChild(notebookIcon);
+}
+
+function handleButtonHover(event) {
+    let button = event.currentTarget;
+    let hoverInfo = button.querySelector('.hover-info');
+    let hoverButtons = button.querySelector('.hover-buttons');
+
+    if (event.type === 'mouseenter') {
+        button.classList.add('hover-button');
+        hoverInfo.style.display = 'block';
+        hoverButtons.style.display = 'flex';
+    } else {
+        button.classList.remove('hover-button');
+        hoverInfo.style.display = 'none';
+        hoverButtons.style.display = 'none';
+    }
 }
