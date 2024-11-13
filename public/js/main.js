@@ -7,10 +7,16 @@ window.onload = async function() {
 
         let data = await response.json();
 
+        let cardsArray = [];
+
         for (let i = 0; i < data.length-1; i++) {
             let imagen = `/electronics/icons/icon${data[i].id}.svg`;
-            createSkillCard(data[i], imagen);
+            let carta = createSkillCard(data[i], imagen);
+            cardsArray.push(carta);
         }
+
+        addRedCircle(cardsArray[0]);
+        addGreenCircle(cardsArray[1]);
 
         let buttons = document.querySelectorAll('.svg-wrapper');
         buttons.forEach(button => {
@@ -24,6 +30,21 @@ window.onload = async function() {
 
     
 };
+
+function addRedCircle (carta) {
+    let redIcon = document.createElement('div');
+    redIcon.classList.add('icon', 'red-icon');
+    redIcon.innerHTML = '🔴';  // You can replace with SVG icon if available
+    carta.appendChild(redIcon);
+}
+
+function addGreenCircle (carta) {
+    let greenIcon = document.createElement('div');
+    greenIcon.classList.add('icon', 'green-icon');
+    greenIcon.innerHTML = '🟢';  // You can replace with SVG icon if available
+    carta.querySelector('polygon').style.fill = 'green';
+    carta.appendChild(greenIcon);
+}
 
 function createSkillCard(data, imagen) {
     let carta = document.createElement('div');
@@ -104,6 +125,8 @@ function createSkillCard(data, imagen) {
     notebookIcon.classList.add('icon', 'notebook-icon');
     notebookIcon.innerHTML = '📒';  // You can replace with SVG icon if available
     carta.appendChild(notebookIcon);
+
+    return carta;
 }
 
 function handleButtonHover(event) {
