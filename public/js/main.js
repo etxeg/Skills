@@ -1,13 +1,32 @@
 let container = document.querySelector('.svg-container');
 
-window.onload = async function() {
+window.onload = async function () {
     try {
+
+        // Create and style the hover message container dynamically
+        let hoverMessage = document.createElement('div');
+        hoverMessage.id = 'hover-message';
+        hoverMessage.style.position = 'fixed';
+        hoverMessage.style.bottom = '0';
+        hoverMessage.style.left = '0';
+        hoverMessage.style.width = '100%';
+        hoverMessage.style.padding = '10px';
+        hoverMessage.style.backgroundColor = '#ffe865';
+        hoverMessage.style.color = 'black';
+        hoverMessage.style.textAlign = 'center';
+        hoverMessage.style.fontSize = '1em';
+        hoverMessage.style.display = 'none'; // Hidden by default
+        hoverMessage.style.display = 'flex';
+        hoverMessage.style.justifyContent = 'center';
+        hoverMessage.style.alignItems = 'center';
+        document.body.appendChild(hoverMessage);
+
         let response = await fetch('/scripts/data.json');
         if (!response.ok) throw new Error('Error al cargar el JSON');
 
         let data = await response.json();
 
-        for (let i = 0; i < data.length-1; i++) {
+        for (let i = 0; i < data.length - 1; i++) {
             let imagen = `/electronics/icons/icon${data[i].id}.svg`;
             createSkillCard(data[i], imagen);
         }
@@ -16,20 +35,28 @@ window.onload = async function() {
         buttons.forEach(button => {
             button.addEventListener('mouseenter', handleButtonHover);
             button.addEventListener('mouseleave', handleButtonHover);
+            button.querySelector('.notebook-icon').addEventListener('click', handleNotebookIconClick);
+
         });
+
+
 
     } catch (error) {
         console.error('Error al cargar los datos:', error);
     }
 
-    
+
+
+
 };
 
 function createSkillCard(data, imagen) {
+
     let carta = document.createElement('div');
     carta.classList.add('svg-wrapper');
     carta.setAttribute('data-id', data.id);
     carta.setAttribute('data-custom', 'false');
+    carta.setAttribute('data-message', data.text); // Add message data attribute
 
     let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("width", "100");
@@ -106,18 +133,41 @@ function createSkillCard(data, imagen) {
     carta.appendChild(notebookIcon);
 }
 
+
+
+
 function handleButtonHover(event) {
     let button = event.currentTarget;
-    let hoverInfo = button.querySelector('.hover-info');
-    let hoverButtons = button.querySelector('.hover-buttons');
+
+    let message = document.getElementById('hover-message');
 
     if (event.type === 'mouseenter') {
         button.classList.add('hover-button');
-        hoverInfo.style.display = 'block';
-        hoverButtons.style.display = 'flex';
+
+        // Display the message at the bottom of the screen
+        message.textContent = button.getAttribute('data-message'); // Dynamically set message
+        message.style.display = 'flex';
     } else {
         button.classList.remove('hover-button');
-        hoverInfo.style.display = 'none';
-        hoverButtons.style.display = 'none';
+
+        // Hide the message at the bottom of the screen
+        message.style.display = 'none';
     }
 }
+
+
+function handleNotebookIconClick(event) {
+    //when clicked, serve the new ejs file
+    event.stopPropagation();
+    
+    // Get the parent svg-wrapper element which contains the data-id
+    const parentWrapper = event.currentTarget.closest('.svg-wrapper');
+    const hexagonId = parentWrapper.getAttribute('data-id');
+    
+    // Navigate to the notebook page with the hexagon ID
+    window.location.href = `/skill/${hexagonId}`;
+}
+
+    
+
+

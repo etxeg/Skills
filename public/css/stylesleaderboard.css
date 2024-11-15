@@ -1,0 +1,143 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+  }
+  
+  /* Estilos de la tabla */
+  .tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Estilo para los encabezados de la tabla */
+  .tabla th {
+    background-color: #333333; /* Fondo ligeramente más oscuro */
+    color: #ffffff; /* Texto en blanco */
+    font-weight: bold; /* Letras en negrita */
+    text-align: center; /* Centrar el texto */
+    padding: 10px; /* Espaciado interno */
+  }
+  
+  .tabla tr {
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tabla tr:last-child {
+    border-bottom: none;
+  }
+  
+  .tabla tr:hover {
+    background-color: #f8f8f8;
+  }
+  
+  .tabla td {
+    padding: 15px 20px;
+    vertical-align: middle;
+  }
+  
+  /* Estilo para la celda del ID */
+  .tabla td:first-child {
+    font-weight: bold;
+    color: #666;
+    width: 80px;
+  }
+  
+  /* Estilo para la celda del nombre */
+  .tabla td:nth-child(2) {
+    color: #333;
+    font-size: 1em;
+  }
+  
+  /* Estilo para la celda de la imagen */
+  .tabla td:last-child {
+    width: 80px;
+    text-align: center;
+  }
+  
+  /* Estilos para las imágenes de los badges */
+  .tabla img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+  }
+  
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+  
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+  
+    .tabla td {
+        padding: 10px 15px;
+    }
+  
+    .tabla img {
+        width: 40px;
+        height: 40px;
+    }
+  
+    .tabla td:first-child {
+        width: 60px;
+    }
+  }
+  
+  /* Estilos para pantallas muy pequeñas */
+  @media (max-width: 480px) {
+    .tabla td {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+  
+    .tabla img {
+        width: 30px;
+        height: 30px;
+    }
+  }
+  
+  /* Animaciones */
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  
+  .tabla tr {
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  /* Ajuste para diferentes tiempos de animación por fila 
+  .tabla tr:nth-child(1) { animation-delay: 0.1s; }
+  .tabla tr:nth-child(2) { animation-delay: 0.2s; }
+  .tabla tr:nth-child(3) { animation-delay: 0.3s; }
+  .tabla tr:nth-child(4) { animation-delay: 0.4s; }
+  .tabla tr:nth-child(5) { animation-delay: 0.5s; }
+   ... y así sucesivamente */
