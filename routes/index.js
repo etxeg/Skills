@@ -29,7 +29,7 @@ const skillData = {
 
 
 async function getData(id) {
-  let response = await fetch('http://skill.etxeg.live/scripts/data.json');
+  let response = await fetch('http://skills.etxeg.live/scripts/data.json');
   if (!response.ok) throw new Error('Error al cargar el JSON');
   let data = await response.json();
   console.log(data);
