@@ -60,6 +60,18 @@ function addRedCircle (carta) {
     let redIcon = document.createElement('div');
     redIcon.classList.add('icon', 'red-icon');
     redIcon.innerHTML = '🔴';  // You can replace with SVG icon if available
+
+    let redNumber = document.createElement('span');
+    redNumber.textContent = '1'; // Change this to the desired number
+    redNumber.style.position = 'absolute';
+    redNumber.style.top = '55%';
+    redNumber.style.left = '50%';
+    redNumber.style.transform = 'translate(-50%, -50%)';
+    redNumber.style.color = 'black';
+    redNumber.style.fontWeight = 'bold';
+    redNumber.style.fontSize = '16px';
+
+    redIcon.appendChild(redNumber);
     carta.appendChild(redIcon);
 }
 
@@ -68,6 +80,19 @@ function addGreenCircle (carta) {
     greenIcon.classList.add('icon', 'green-icon');
     greenIcon.innerHTML = '🟢';  // You can replace with SVG icon if available
     carta.querySelector('polygon').style.fill = 'green';
+
+    let greenNumber = document.createElement('span');
+    greenNumber.textContent = '1'; // Change this to the desired number
+    greenNumber.style.position = 'absolute';
+    greenNumber.style.top = '55%';
+    greenNumber.style.left = '50%';
+    greenNumber.style.transform = 'translate(-50%, -50%)';
+    greenNumber.style.color = 'black';
+    greenNumber.style.fontWeight = 'bold';
+    greenNumber.style.fontSize = '16px';
+
+    greenIcon.appendChild(greenNumber);
+
     carta.appendChild(greenIcon);
 }
 
@@ -190,7 +215,3 @@ function handleNotebookIconClick(event) {
     // Navigate to the notebook page with the hexagon ID
     window.location.href = `/skill/${hexagonId}`;
 }
-
-    
-
-
