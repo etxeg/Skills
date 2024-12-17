@@ -59,4 +59,12 @@ router.get('/skill/:id', async function(req, res, next) {
   });
 });
 
+router.get('/leaderboard', function(req, res, next) {
+  res.render('leaderboard', { title: 'Leaderboard' });
+}); 
+
+router.get('/about', function(req, res, next) {
+  res.render('about', { title: 'About' });
+});
+
 module.exports = router;

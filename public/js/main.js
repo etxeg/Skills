@@ -2,7 +2,7 @@ let container = document.querySelector('.svg-container');
 
 window.onload = async function () {
     try {
-        
+
         // Create and style the top-right menu container
         let topMenu = document.createElement('div');
         topMenu.id = 'topMenu';
@@ -21,12 +21,12 @@ window.onload = async function () {
         document.body.appendChild(topMenu);
 
         let menuItems = [
-            { text: 'Leaderboard', link: '/leaderboard' },
+            { text: 'Leaderboard', link: '../views/leaderboard.html' },
             { text: 'About', link: '/about' },
             { text: 'Logout', link: 'logout' },
-            { text: 'Admin Dashboard', link: '/admin' },
+            { text: 'Admin Dashboard' },
         ];
-        
+
         menuItems.forEach(item => {
             let menuItem = document.createElement('a');
             menuItem.textContent = item.text;
@@ -44,13 +44,15 @@ window.onload = async function () {
                 menuItem.style.color = '#000';
                 menuItem.style.border = '1px solid #ccc';
             });
-        
+
             menuItem.addEventListener('mouseout', () => {
                 menuItem.style.backgroundColor = 'transparent';
                 menuItem.style.color = 'blue';
                 menuItem.style.border = '1px solid transparent';
             });
-        
+
+            menuItem.addEventListener('click', hhandleMenuItemClick);
+
             topMenu.appendChild(menuItem);
         });
 
@@ -79,7 +81,7 @@ window.onload = async function () {
 
         let cardsArray = [];
 
-        for (let i = 0; i < data.length-1; i++) {
+        for (let i = 0; i < data.length - 1; i++) {
             let imagen = `/electronics/icons/icon${data[i].id}.svg`;
             let carta = createSkillCard(data[i], imagen);
             cardsArray.push(carta);
@@ -107,7 +109,7 @@ window.onload = async function () {
 
 };
 
-function addRedCircle (carta) {
+function addRedCircle(carta) {
     let redIcon = document.createElement('div');
     redIcon.classList.add('icon', 'red-icon');
     redIcon.innerHTML = '🔴';  // You can replace with SVG icon if available
@@ -126,7 +128,7 @@ function addRedCircle (carta) {
     carta.appendChild(redIcon);
 }
 
-function addGreenCircle (carta) {
+function addGreenCircle(carta) {
     let greenIcon = document.createElement('div');
     greenIcon.classList.add('icon', 'green-icon');
     greenIcon.innerHTML = '🟢';  // You can replace with SVG icon if available
@@ -258,11 +260,32 @@ function handleButtonHover(event) {
 function handleNotebookIconClick(event) {
     //when clicked, serve the new ejs file
     event.stopPropagation();
-    
+
     // Get the parent svg-wrapper element which contains the data-id
     const parentWrapper = event.currentTarget.closest('.svg-wrapper');
     const hexagonId = parentWrapper.getAttribute('data-id');
-    
+
     // Navigate to the notebook page with the hexagon ID
     window.location.href = `/skill/${hexagonId}`;
+}
+
+function hhandleMenuItemClick(event) {
+    event.preventDefault();
+    let menuItem = event.currentTarget;
+    switch (menuItem.textContent) {
+        case 'Leaderboard':
+            window.location.href = '/leaderboard';
+            break;
+        case 'About':
+            window.location.href = '/about';
+            break;
+        case 'Logout':
+            window.location.href = '/logout';
+            break;
+        case 'Admin Dashboard':
+            window.location.href = '/admin';
+            break;
+        default:
+            break;
+    }
 }
