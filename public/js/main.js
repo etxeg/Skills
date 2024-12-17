@@ -3,58 +3,58 @@ let container = document.querySelector('.svg-container');
 window.onload = async function () {
     try {
 
-        // Create and style the top-right menu container
-        let topMenu = document.createElement('div');
-        topMenu.id = 'topMenu';
-        topMenu.style.position = 'fixed';
-        topMenu.style.top = '10px';
-        topMenu.style.right = '10px';
-        topMenu.style.display = 'flex';
-        topMenu.style.gap = '10px';
-        topMenu.style.padding = '10px 20px';
-        topMenu.style.backgroundColor = '#ffe865';
-        topMenu.style.borderRadius = '8px';
-        topMenu.style.boxShadow = '0px 4px 6px rgba(0, 0, 0, 0.1)';
-        topMenu.style.zIndex = '1000';
-        topMenu.style.fontSize = '1em';
-        topMenu.style.display = 'flex';
-        document.body.appendChild(topMenu);
-
-        let menuItems = [
-            { text: 'Leaderboard', link: '../views/leaderboard.html' },
-            { text: 'About', link: '/about' },
-            { text: 'Logout', link: 'logout' },
-            { text: 'Admin Dashboard' },
-        ];
-
-        menuItems.forEach(item => {
-            let menuItem = document.createElement('a');
-            menuItem.textContent = item.text;
-            menuItem.href = item.link;
-            menuItem.style.textDecoration = 'none';
-            menuItem.style.color = 'blue';
-            menuItem.style.fontWeight = 'bold';
-            menuItem.style.padding = '5px 10px';
-            menuItem.style.border = '1px solid transparent';
-            menuItem.style.borderRadius = '4px';
-            menuItem.style.transition = 'all 0.3s ease';
-
-            menuItem.addEventListener('mouseover', () => {
-                menuItem.style.backgroundColor = '#fff';
-                menuItem.style.color = '#000';
-                menuItem.style.border = '1px solid #ccc';
-            });
-
-            menuItem.addEventListener('mouseout', () => {
-                menuItem.style.backgroundColor = 'transparent';
-                menuItem.style.color = 'blue';
-                menuItem.style.border = '1px solid transparent';
-            });
-
-            menuItem.addEventListener('click', hhandleMenuItemClick);
-
-            topMenu.appendChild(menuItem);
-        });
+       // // Create and style the top-right menu container
+       // let topMenu = document.createElement('div');
+       // topMenu.id = 'topMenu';
+       // topMenu.style.position = 'fixed';
+       // topMenu.style.top = '10px';
+       // topMenu.style.right = '10px';
+       // topMenu.style.display = 'flex';
+       // topMenu.style.gap = '10px';
+       // topMenu.style.padding = '10px 20px';
+       // topMenu.style.backgroundColor = '#ffe865';
+       // topMenu.style.borderRadius = '8px';
+       // topMenu.style.boxShadow = '0px 4px 6px rgba(0, 0, 0, 0.1)';
+       // topMenu.style.zIndex = '1000';
+       // topMenu.style.fontSize = '1em';
+       // topMenu.style.display = 'flex';
+       // document.body.appendChild(topMenu);
+//
+       // let menuItems = [
+       //     { text: 'Leaderboard', link: '../views/leaderboard.html' },
+       //     { text: 'About', link: '/about' },
+       //     { text: 'Logout', link: 'logout' },
+       //     { text: 'Admin Dashboard' },
+       // ];
+//
+       // menuItems.forEach(item => {
+       //     let menuItem = document.createElement('a');
+       //     menuItem.textContent = item.text;
+       //     menuItem.href = item.link;
+       //     menuItem.style.textDecoration = 'none';
+       //     menuItem.style.color = 'blue';
+       //     menuItem.style.fontWeight = 'bold';
+       //     menuItem.style.padding = '5px 10px';
+       //     menuItem.style.border = '1px solid transparent';
+       //     menuItem.style.borderRadius = '4px';
+       //     menuItem.style.transition = 'all 0.3s ease';
+//
+       //     menuItem.addEventListener('mouseover', () => {
+       //         menuItem.style.backgroundColor = '#fff';
+       //         menuItem.style.color = '#000';
+       //         menuItem.style.border = '1px solid #ccc';
+       //     });
+//
+       //     menuItem.addEventListener('mouseout', () => {
+       //         menuItem.style.backgroundColor = 'transparent';
+       //         menuItem.style.color = 'blue';
+       //         menuItem.style.border = '1px solid transparent';
+       //     });
+//
+       //     menuItem.addEventListener('click', hhandleMenuItemClick);
+//
+       //     topMenu.appendChild(menuItem);
+       // });
 
         // Create and style the hover message container dynamically
         let hoverMessage = document.createElement('div');
