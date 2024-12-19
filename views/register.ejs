@@ -9,9 +9,10 @@
 <body>
     <div class="login-container">
         <h2>Register</h2>
+        <%- include('partials/message', { error: error || '' }) %>
 
         <!-- Login Form -->
-        <form action="/register" method="POST">
+        <form action="/users/register" method="POST">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
@@ -23,7 +24,9 @@
 
             <button type="submit">Register</button>
         </form>
-        
+        <div class="login-link">
+            Already have an account? <a href="/users/login">Login here</a>
+          </div>
     </div>
 </body>
 </html>
