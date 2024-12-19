@@ -7,7 +7,7 @@ router.use(express.static(path.join(__dirname, 'public')));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', isLoggedIn: req.session.user ? true : false });
+  res.render('index', { title: 'Express', isLoggedIn: req.session.user ? true : false, user: req.session.user||null });
 });
 
 

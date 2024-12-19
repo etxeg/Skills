@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
     }
 
     // Store user data in session
-    req.session.user = { id: user._id, username: user.username };
+    req.session.user = { id: user._id, username: user.username, role: user.role };  
 
     req.session.save((err) => {
       if (err) {
@@ -61,8 +61,16 @@ router.post('/register', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password1, 10);
 
-    const user = await User.create({ username, password: hashedPassword });
-    req.session.user = { id: user._id, username: user.username };
+    const userCount = await User.countDocuments(); // Count how many users exist in the database
+    let role = 'user'; // Default role for new users
+
+    // If there are no users, this user should be an admin
+    if (userCount === 0) {
+      role = 'admin'; // First user becomes an admin
+    }
+
+    const user = await User.create({ username, password: hashedPassword, role });
+    req.session.user = { id: user._id, username: user.username, role: user.role };
 
     res.redirect('/users/login'); // Redirect to the homepage or dashboard
   } catch (err) {

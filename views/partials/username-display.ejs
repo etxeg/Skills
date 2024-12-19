@@ -6,7 +6,10 @@
     <% if (isLoggedIn) { %>
       <!-- Links visible only when logged in -->
       <a href="/leaderboard.ejs" style="color: blue; text-decoration: none; margin: 0 15px; font-weight: bold;">Leaderboard</a>
-      <a href="/admin" style="color: blue; text-decoration: none; margin: 0 15px; font-weight: bold;">Admin Dashboard</a>
+      <% if (user && user.role === 'admin') { %>
+        <!-- Admin Dashboard link visible only for admins -->
+        <a href="/admin" style="color: blue; text-decoration: none; margin: 0 15px; font-weight: bold;">Admin Dashboard</a>
+      <% } %>
       <a href="/users/logout" style="color: blue; text-decoration: none; margin: 0 15px; font-weight: bold;">Logout</a>
     <% } else { %>
       <!-- Links visible only when not logged in -->
