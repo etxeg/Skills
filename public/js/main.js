@@ -51,7 +51,6 @@ window.onload = async function () {
        //         menuItem.style.border = '1px solid transparent';
        //     });
 //
-       //     menuItem.addEventListener('click', hhandleMenuItemClick);
 //
        //     topMenu.appendChild(menuItem);
        // });
@@ -280,7 +279,7 @@ function handleNotebookIconClick(event) {
     window.location.href = `/skill/${hexagonId}`;
 }
 
-function hhandleMenuItemClick(event) {
+function handleMenuItemClick(event) {
     event.preventDefault();
     let menuItem = event.currentTarget;
     switch (menuItem.textContent) {
