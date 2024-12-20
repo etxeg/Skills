@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> Skill</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    /* Centering the h1 globally */
+    h1 {
+      text-align: center; /* Center the h1 */
+    }
+
+    ul {
+      list-style-type: none; /* Remove bullets from unordered list */
+      padding-left: 0; /* Optional: Remove default left padding */
+    }
+
+    /* Layout for hexagon and content */
+    .skill-container {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center; /* Center the content horizontally */
+      margin: 20px;
+    }
+
+    .svg-wrapper {
+      position: relative;
+      margin-right: 20px; /* Space between hexagon and other content */
+    }
+
+    .hexagon {
+      fill: white;
+      stroke: black;
+      stroke-width: 1px;
+    }
+
+    .hexagon-title {
+      font-size: 9px;
+      font-weight: bold;
+      fill: black;
+    }
+
+    .hexagon-icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* Remove bullets from unordered list */
+    ul {
+      list-style-type: none;
+      padding-left: 0; /* Optional: Remove default left padding */
+    }
+
+    /* Additional Styles for Task Checkboxes */
+    .task-list input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    .task-list li {
+      margin-bottom: 10px;
+    }
+
+    /* Content styling */
+    .content-wrapper {
+      max-width: 600px; /* You can adjust this value */
+      text-align: center; /* Centers text content horizontally */
+    }
+
+    /* Styles for the text input and button (Initially hidden) */
+    .hidden-elements {
+      display: none;
+      margin-top: 20px;
+      text-align: center; /* Centers the input and button */
+    }
+
+    .hidden-elements input {
+      padding: 10px;
+      font-size: 14px;
+      margin-bottom: 10px; /* Adds space below the input */
+      width: 100%; /* Make input take up full width */
+      max-width: 300px; /* Optional: limits max width */
+      box-sizing: border-box; /* Ensures padding is included in the width */
+    }
+
+    .hidden-elements button {
+      padding: 10px 20px;
+      font-size: 14px;
+      width: 100%; /* Make button take up full width */
+      max-width: 300px; /* Optional: limits max width */
+      box-sizing: border-box; /* Ensures padding is included in the width */
+      background-color: green;
+    }
+
+    .textarea {
+      min-height: 4px;
+      resize: vertical;
+      overflow: auto;
+    }
+
+    .b { /* Preguntar a etxe */
+        text-align: left;
+    }
+    
+    .button1 {background-color: rgb(20, 180, 20);}
+    .button2 {background-color: rgb(100, 100, 100);}
+    .button3 {background-color: rgb(180, 20, 20);}
+
+  </style>
+</head>
+<body>
+
+  <!-- Centered Header -->
+  <h1>skill: <%= title %></h1>
+
+  <!-- Skill container (Hexagon on the left, content on the right) -->
+  <div class="skill-container">
+    <!-- Hexagon -->
+    <div class="svg-wrapper">
+      <svg width="100" height="100" viewBox="0 0 100 100">
+        <!-- Hexagon Shape -->
+        <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" class="hexagon" />
+
+        <!-- Title Inside Hexagon (Lowered) -->
+        <text x="50%" y="25" class="hexagon-title" text-anchor="middle">
+          <% 
+            let words = title.split(' ');
+            let maxCharsPerLine = 18;  // Max characters per line
+            let line = '';
+            let dy = 1.2;
+            words.forEach((word, index) => {
+              line += word + ' ';
+              if (line.length > maxCharsPerLine) {
+                %>
+                <tspan x="50%" dy="<%= dy %>em" font-weight="bold"><%= line.trim() %></tspan>
+                <%
+                line = '';
+                dy += 1.2; // Increase vertical space for next line
+              }
+            });
+            // Add remaining text if any
+            if (line) {
+              %>
+              <tspan x="50%" dy="<%= dy %>em" font-weight="bold"><%= line.trim() %></tspan>
+              <%
+            }
+          %>
+        </text>
+
+        <!-- Icon Inside Hexagon (Bottom) -->
+        <image x="35%" y="60%" width="30" height="30" href="<%= icon %>" />
+      </svg>
+    </div>
+
+    <!-- Edit Content (Description, Tasks, etc.)-->
+     <div class="content-wrapper">
+        <b>Skill Text:</b>
+        <br>
+        <textarea name="hex-text" id="hex-text" cols="50"><%= title %></textarea>
+        <br>
+        <b>Description:</b>
+        <br>
+        <textarea name="description" id="description" cols="50"><%= description %></textarea>
+        <br>
+        <b>Tasks to Complete (one per line):</b>
+        <br>
+        <textarea name="task-list" id="task-list" rows="4" cols="50"><%= tasks.map(task => task.trim()).join('\n') %></textarea>
+        <br>
+        <b>Resources (one per line):</b>
+        <br>
+        <textarea name="resource-list" id="resource-list" rows="4" cols="50"><%= resources.map(resource => resource.trim()).join('\n') %></textarea>
+        <br>
+        <b>Skill Score:</b>
+        <br>
+        <textarea name="skillScore" id="skillScore" rows="1" cols="50"><%= score %></textarea>
+        <br>
+        <b>Upload Icon(30x30 png):</b>
+        <br>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="file">
+        </form>          
+        <br>
+        <button class="button button1"> Save </button>
+        <button class="button button2"> Cancel </button>
+        <button class="button button3"> Delete Skill</button>
+     </div>
+
+     <script>
+      function cancelEdit(event) {
+        event.stopPropagation(); // Hau beharrezkoa? Zertarako da?
+        window.location.href = `/`;
+      }
+
+      function saveEdit(event) {
+
+      }
+
+      function deleteSkill (event) {
+        event.stopPropagation();
+        window.location.href = `/`;
+      }
+
+      document.querySelector('body > div > div.content-wrapper > button.button.button2').addEventListener('click', cancelEdit);
+     </script>
+
+</body>
+</html>

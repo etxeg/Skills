@@ -62,6 +62,24 @@ router.get('/skill/:id', async function(req, res, next) {
   });
 });
 
+router.get('/skill/edit/:id', async function(req, res, next) {
+  const hexagonId = req.params.id;
+
+  let data = await getData(hexagonId);
+  let text = data.text
+  let icon = `/electronics/icons/icon${hexagonId}.svg`;
+
+  console.log(data.text);
+  res.render('edit', { 
+    title: text,
+    description: skillData.description,
+    score: skillData.score, 
+    tasks: skillData.tasks, 
+    resources: skillData.resources,
+    icon: icon
+  });
+});
+
 router.get('/leaderboard', function(req, res, next) {
   res.render('leaderboard', { title: 'Leaderboard' });
 }); 

@@ -95,7 +95,7 @@ window.onload = async function () {
             button.addEventListener('mouseenter', handleButtonHover);
             button.addEventListener('mouseleave', handleButtonHover);
             button.querySelector('.notebook-icon').addEventListener('click', handleNotebookIconClick);
-
+            button.querySelector('.pencil-icon').addEventListener('click', handlePencilIconClick);
         });
 
 
@@ -256,6 +256,17 @@ function handleButtonHover(event) {
     }
 }
 
+function handlePencilIconClick(event) {
+    //when clicked, serve the new ejs file
+    event.stopPropagation();
+
+    // Get the parent svg-wrapper element which contains the data-id
+    const parentWrapper = event.currentTarget.closest('.svg-wrapper');
+    const hexagonId = parentWrapper.getAttribute('data-id');
+
+    // Navigate to the pencil page with the hexagon ID
+    window.location.href = `/skill/edit/${hexagonId}`;
+}
 
 function handleNotebookIconClick(event) {
     //when clicked, serve the new ejs file
