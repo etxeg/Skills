@@ -5,11 +5,9 @@ const path = require('path');
 router.use(express.static(path.join(__dirname, 'public')));
 
 
-const isAuthenticated = false;
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', isLoggedIn: isAuthenticated });
+  res.render('index', { title: 'Express', isLoggedIn: req.session.user ? true : false, user: req.session.user||null });
 });
 
 
@@ -88,12 +86,5 @@ router.get('/about', function(req, res, next) {
   res.render('about', { title: 'About' });
 });
 
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login' });
-});
-
-router.get('/register', function(req, res, next) {
-  res.render('register', { title: 'Register' });
-});
 
 module.exports = router;

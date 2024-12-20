@@ -77,3 +77,13 @@ body {
   .register-link a:hover {
     text-decoration: underline;
   }
+
+  /* Custom error message styling */
+.alert.alert-danger {
+  color: red; /* Red text color */
+  background-color: #f8d7da; /* Light red background */
+  border: 1px solid red; /* Red border */
+  padding: 10px; /* Add some padding */
+  font-weight: bold; /* Bold text */
+  font-size: 14px; /* Optional: Adjust font size */
+}
