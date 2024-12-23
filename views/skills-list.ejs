@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills List</title>
+</head>
+<body>
+    <h1>Skills in <%= skillTreeName %></h1>
+    <ul>
+        <% skills.forEach(skill => { %>
+            <li>
+                <a href="/skills/<%= skill.set %>/view/<%= skill._id %>"><%= skill.text %></a>
+                <a href="/skills/<%= skill.set %>/edit/<%= skill._id %>">Edit</a>
+            </li>
+        <% }) %>
+    </ul>
+    <a href="/skills/<%= skillTreeName %>/add">Add New Skill</a>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Details</title>
+</head>
+<body>
+    <h1><%= skill.text %></h1>
+    <p><%= skill.description %></p>
+    <h2>Tasks</h2>
+    <ul>
+        <% skill.tasks.forEach(task => { %>
+            <li><%= task %></li>
+        <% }) %>
+    </ul>
+    <h2>Resources</h2>
+    <ul>
+        <% skill.resources.forEach(resource => { %>
+            <li><a href="<%= resource %>"><%= resource %></a></li>
+        <% }) %>
+    </ul>
+    <a href="/skills/<%= skill.set %>">Back to Skills</a>
+</body>
+</html>
