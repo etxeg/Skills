@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skills List</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+    <%- include('partials/messages') %>
+    <%- include('partials/username-display') %>
     <h1>Skills in <%= skillTreeName %></h1>
     <ul>
         <% skills.forEach(skill => { %>
