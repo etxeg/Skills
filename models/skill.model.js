@@ -5,27 +5,27 @@ const SkillSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    icon: {
+        type: String 
+    },
     set: {
         type: String,
-        required: true // Por ejemplo, 'electronics' o 'llm101'
-    },
-    description: {
-        type: String
+        required: true 
     },
     tasks: {
         type: [String], // Lista de tareas
         default: []
     },
     resources: {
-        type: [String], // Lista de URLs para recursos
+        type: [String], 
         default: []
+    },
+    description: {
+        type: String
     },
     score: {
         type: Number,
         default: 1
-    },
-    icon: {
-        type: String // URL del icono
     }
 });
 

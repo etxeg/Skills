@@ -19,7 +19,7 @@ const UserSkillSchema = new mongoose.Schema({
         type: Date
     },
     evidence: {
-        type: String // Descripción de la evidencia proporcionada
+        type: String 
     },
     verified: {
         type: Boolean,
