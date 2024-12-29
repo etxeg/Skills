@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const SkillSchema = new mongoose.Schema({
+    id: {
+        type: String,
+        required: true, 
+        unique: true
+    },
     text: {
         type: String,
         required: true

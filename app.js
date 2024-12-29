@@ -36,8 +36,8 @@ app.use(session({
 app.use((req, res, next) => {
   res.locals.isLoggedIn = req.session.user ? true : false;
   res.locals.user = req.session.user||null;
-  console.log(res.locals.isLoggedIn);
-  console.log(res.locals.user);
+  //console.log(res.locals.isLoggedIn);
+  //console.log(res.locals.user);
   next();
 });
 

@@ -25,7 +25,7 @@ exports.addSkill = async (req, res) => {
 };
 
 exports.getSkillDetails = async (req, res) => {
-    const skill = await Skill.findById(req.params.skillID);
+    const skill = await Skill.findById(req.params.hexagonId);
     res.render('skill-details', { skill });
 };
 

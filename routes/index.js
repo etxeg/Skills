@@ -2,15 +2,16 @@ var express = require('express');
 var router = express.Router();
 const path = require('path');
 const fs = require('fs');
+const Skill = require('../models/skill.model');
+const Icon = require('../models/icons.model');
+const mongoose = require('mongoose');
 
 router.use(express.static(path.join(__dirname, 'public')));
-
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express', isLoggedIn: req.session.user ? true : false, user: req.session.user||null });
 });
-
 
 const skillData = {
   description : "lorem ipsum dolor sit amet consectetur adipiscing elit",
@@ -27,7 +28,7 @@ const skillData = {
     "resource 3",
     "resource 4",
   ]
-}
+};
 
 
 async function getData(id) {
@@ -38,25 +39,22 @@ async function getData(id) {
   let item = data.find(item => item.id === id); 
   console.log("item",item);
 
-    return item
+  return item
 }
 
 // create a new get endpoint for /skill/:id
 router.get('/skill/:id', async function(req, res, next) {
   const hexagonId = req.params.id;
-        
-  let data = await getData(hexagonId);
-  let text = data.text
-  let icon = `/electronics/icons/icon${hexagonId}.svg`;
-  
-  console.log(data.text);
+
+  const skill = await Skill.findOne({ id: hexagonId });
+
   res.render('skill', { 
-    title: text,
-    description: skillData.description,
-    score: skillData.score, 
-    tasks: skillData.tasks, 
-    resources: skillData.resources,
-    icon: icon
+    title: skill.text,
+    description: skill.description || skillData.description,
+    score: skill.score || skillData.score, 
+    tasks: skill.tasks || skillData.tasks, 
+    resources: skill.resources || skillData.resources,
+    icon: skill.icon
 
   });
 });
@@ -73,23 +71,17 @@ router.get('/about', function(req, res, next) {
 router.get('/skill/edit/:id', async function(req, res, next) {
   const hexagonId = req.params.id;
 
-  let data = await getData(hexagonId);
-  let text = data.text;
-  let icon = `/electronics/icons/icon${hexagonId}.svg`;
-  let description = null;
-  let score = 1;
-  let resources = null;
-  let tasks = null;
+  const skill = await Skill.findOne({ id: hexagonId });
+  const icon = await Icon.findOne({ id: hexagonId});
 
-  console.log(hexagonId);
   res.render('edit', { 
-    skillId: hexagonId,
-    title: text,
-    description: description || skillData.description,
-    score: score || skillData.score, 
-    tasks: tasks || skillData.tasks, 
-    resources: resources || skillData.resources,
-    icon: icon
+    skillId: skill.id,
+    title: skill.text,
+    description: skill.description || skillData.description,
+    score: skill.score || skillData.score, 
+    tasks: skill.tasks || skillData.tasks, 
+    resources: skill.resources || skillData.resources,
+    icon: skill.icon
   });
 });
 

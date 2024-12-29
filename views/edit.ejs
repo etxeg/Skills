@@ -3,126 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %> Skill</title>
+  <title><%= title %> Skill Editor</title>
   <link rel="stylesheet" href="/styles.css">
   <style>
-    /* Centering the h1 globally */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
     h1 {
-      text-align: center; /* Center the h1 */
+      text-align: center;
+      margin-top: 20px;
     }
 
-    ul {
-      list-style-type: none; /* Remove bullets from unordered list */
-      padding-left: 0; /* Optional: Remove default left padding */
-    }
-
-    /* Layout for hexagon and content */
     .skill-container {
       display: flex;
-      align-items: flex-start;
-      justify-content: center; /* Center the content horizontally */
-      margin: 20px;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
     }
 
     .svg-wrapper {
-      position: relative;
-      margin-right: 20px; /* Space between hexagon and other content */
+      margin-bottom: 20px;
     }
 
-    .hexagon {
-      fill: white;
-      stroke: black;
-      stroke-width: 1px;
-    }
-
-    .hexagon-title {
-      font-size: 9px;
-      font-weight: bold;
-      fill: black;
-    }
-
-    .hexagon-icon {
-      width: 30px;
-      height: 30px;
-    }
-
-    /* Remove bullets from unordered list */
-    ul {
-      list-style-type: none;
-      padding-left: 0; /* Optional: Remove default left padding */
-    }
-
-    /* Additional Styles for Task Checkboxes */
-    .task-list input[type="checkbox"] {
-      margin-right: 10px;
-    }
-
-    .task-list li {
-      margin-bottom: 10px;
-    }
-
-    /* Content styling */
     .content-wrapper {
-      max-width: 600px; /* You can adjust this value */
-      text-align: center; /* Centers text content horizontally */
+      width: 100%;
     }
 
-    /* Styles for the text input and button (Initially hidden) */
-    .hidden-elements {
-      display: none;
-      margin-top: 20px;
-      text-align: center; /* Centers the input and button */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
     }
 
-    .hidden-elements input {
+    .form-group label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group textarea,
+    .form-group input {
       padding: 10px;
       font-size: 14px;
-      margin-bottom: 10px; /* Adds space below the input */
-      width: 100%; /* Make input take up full width */
-      max-width: 300px; /* Optional: limits max width */
-      box-sizing: border-box; /* Ensures padding is included in the width */
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
-    .hidden-elements button {
+    textarea {
+      resize: vertical;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .buttons button {
       padding: 10px 20px;
       font-size: 14px;
-      width: 100%; /* Make button take up full width */
-      max-width: 300px; /* Optional: limits max width */
-      box-sizing: border-box; /* Ensures padding is included in the width */
-      background-color: green;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #fff;
     }
 
-    .textarea {
-      min-height: 4px;
-      resize: vertical;
-      overflow: auto;
+    .button1 {
+      background-color: rgb(20, 180, 20);
     }
 
-    .b { /* Preguntar a etxe */
-        text-align: left;
+    .button2 {
+      background-color: rgb(100, 100, 100);
     }
-    
-    .button1 {background-color: rgb(20, 180, 20);}
-    .button2 {background-color: rgb(100, 100, 100);}
-    .button3 {background-color: rgb(180, 20, 20);}
 
+    .button3 {
+      background-color: rgb(180, 20, 20);
+    }
+
+    .button1:hover,
+    .button2:hover,
+    .button3:hover {
+      opacity: 0.8;
+    }
   </style>
 </head>
 <body>
+  <h1>Edit Skill: <%= title %></h1>
 
-  <!-- Centered Header -->
-  <h1>skill: <%= title %></h1>
-
-  <!-- Skill container (Hexagon on the left, content on the right) -->
   <div class="skill-container">
-    <!-- Hexagon -->
+    <!-- Hexagon Preview -->
     <div class="svg-wrapper">
       <svg width="100" height="100" viewBox="0 0 100 100">
-        <!-- Hexagon Shape -->
-        <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" class="hexagon" />
-
-        <!-- Title Inside Hexagon (Lowered) -->
-        <text x="50%" y="25" class="hexagon-title" text-anchor="middle">
+        <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" fill="white" stroke="black" stroke-width="1" />
+        <text x="50%" y="25" font-size="9px" font-weight="bold" fill="black" text-anchor="middle">
           <% 
             let words = title.split(' ');
             let maxCharsPerLine = 18;  // Max characters per line
@@ -146,108 +130,108 @@
             }
           %>
         </text>
-
-        <!-- Icon Inside Hexagon (Bottom) -->
-        <image x="35%" y="60%" width="30" height="30" href="<%= icon %>" />
+        <image x="35%" y="60%" width="30" height="30" href="<%= icon.svg %>" />
       </svg>
     </div>
 
-    <!-- Edit Content (Description, Tasks, etc.)-->
-     <div class="content-wrapper">
-        <b>Skill Text:</b>
-        <br>
-        <textarea name="hex-text" id="hex-text" cols="50"><%=title %></textarea>
-        <br>
-        <b>Description:</b>
-        <br>
-        <textarea name="description" id="description" cols="50"><%=description %></textarea>
-        <br>
-        <b>Tasks to Complete (one per line):</b>
-        <br>
-        <textarea name="task-list" id="task-list" rows="4" cols="50"><%=tasks.map(task => task.trim()).join('\n') %></textarea>
-        <br>
-        <b>Resources (one per line):</b>
-        <br>
-        <textarea name="resource-list" id="resource-list" rows="4" cols="50"><%=resources.map(resource => resource.trim()).join('\n') %></textarea>
-        <br>
-        <b>Skill Score:</b>
-        <br>
-        <textarea name="skillScore" id="skillScore" rows="1" cols="50"><%=score %></textarea>
-        <br>
-        <b>Upload Icon(30x30 png):</b>
-        <br>
+    <!-- Form for Editing Skill -->
+    <div class="content-wrapper">
+      <div class="form-group">
+        <label for="hex-text">Skill Text:</label>
+        <textarea id="hex-text" name="hex-text" rows="2"><%= title %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4"><%= description %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="task-list">Tasks to Complete (one per line):</label>
+        <textarea id="task-list" name="task-list" rows="4"><%= tasks.map(task => task.trim()).join('\n') %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="resource-list">Resources (one per line):</label>
+        <textarea id="resource-list" name="resource-list" rows="4"><%= resources.map(resource => resource.trim()).join('\n') %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="skillScore">Skill Score:</label>
+        <input type="text" id="skillScore" name="skillScore" value="<%= score %>" />
+      </div>
+
+      <div class="form-group">
+        <label for="fileInput">Upload Icon (30x30 PNG):</label>
         <form action="/upload" method="POST" enctype="multipart/form-data">
-            <input type="file" id="fileInput" name="file">
-        </form>          
-        <br>
-        <button id="save" class="button button1"> Save </button>
-        <button id="cancel" class="button button2"> Cancel </button>
-        <button id="delete" class="button button3"> Delete Skill</button>
-     </div>
+          <input type="file" id="fileInput" name="file">
+        </form>
+      </div>
 
-     <script>
-      function cancelEdit(event) {
-        event.stopPropagation(); // Hau beharrezkoa? Zertarako da?
-        window.location.href = `/`;
-      }
+      <div class="buttons">
+        <button id="save" class="button button1">Save</button>
+        <button id="cancel" class="button button2">Cancel</button>
+        <button id="delete" class="button button3">Delete Skill</button>
+      </div>
+    </div>
+  </div>
 
-      function saveEdit(event) {
+  <script>
+    document.getElementById('cancel').addEventListener('click', () => {
+      window.location.href = '/';
+    });
 
-      }
+    document.getElementById('delete').addEventListener('click', async () => {
+      if (confirm('Are you sure you want to delete this skill?')) {
+        const skillId = '<%= skillId %>';
+        try {
+          const response = await fetch(`/skill/${skillId}`, {
+            method: 'DELETE',
+          });
 
-      document.getElementById('cancel').addEventListener('click', cancelEdit);
-      document.getElementById('delete').addEventListener('click', async function () {
-          if (confirm('Zihur skill hau ezabatu nahi duzula?')) {
-            const skillId = '<%= skillId %>';
-            try {
-              const response = await fetch(`/skill/${skillId}`, {
-                method: 'DELETE',
-              });
-
-              if (response.ok) {
-                alert('Skill hau ezabatua izan da');
-                window.location.href = '/'; // Redirigir a la página principal
-              } else {
-                alert('Errorea skill ezabatzerako orduan');
-              }
-            } catch (error) {
-              console.error('Error:', error);
-              alert('Errorea skill ezabatzerako orduan');
-            }
+          if (response.ok) {
+            alert('Skill successfully deleted.');
+            window.location.href = '/';
+          } else {
+            alert('Error deleting the skill.');
           }
-        });
-        document.getElementById('save').addEventListener('click', async function() {
-          const skillId = '<%= skillId %>';
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error deleting the skill.');
+        }
+      }
+    });
 
-          const updatedSkill = {
-            text: document.getElementById('hex-text').value,
-            description: document.getElementById('description').value,
-            tasks: document.getElementById('task-list').value.split('\n').map(task => task.trim()), // Convertir en array
-            resources: document.getElementById('resource-list').value.split('\n').map(resource => resource.trim()), // Convertir en array
-            score: parseInt(document.getElementById('skillScore').value) || 1
-          };
-          try {
-            const response = await fetch(`/skill/${skillId}`, {
-              method: 'PUT',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(updatedSkill)
-            });
-            if (response.ok) {
-              alert('Skill actualizado correctamente');
-              window.location.href = '/'; // Redirigir a la página principal
-            } else {
-              const errorText = await response.text();
-              console.error('Error al actualizar el skill:', errorText);
-              alert('Error al actualizar el skill');
-            }
-          } catch (error) {
-            console.error('Error:', error);
-            alert('Errorea skill eguneratzeko orduan');
-          }
-        });
-     </script>
+    document.getElementById('save').addEventListener('click', async () => {
+      const skillId = '<%= skillId %>';
+      const updatedSkill = {
+        text: document.getElementById('hex-text').value,
+        description: document.getElementById('description').value,
+        tasks: document.getElementById('task-list').value.split('\n').map(task => task.trim()),
+        resources: document.getElementById('resource-list').value.split('\n').map(resource => resource.trim()),
+        score: parseInt(document.getElementById('skillScore').value) || 1,
+      };
 
+      try {
+        const response = await fetch(`/skill/${skillId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedSkill),
+        });
+
+        if (response.ok) {
+          alert('Skill successfully updated.');
+          window.location.href = '/';
+        } else {
+          alert('Error updating the skill.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Error updating the skill.');
+      }
+    });
+  </script>
 </body>
 </html>
