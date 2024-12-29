@@ -1,0 +1,52 @@
+const Skill = require('../models/skill.model');
+const UserSkill = require('../models/userSkill.model');
+
+exports.redirectToDefaultTree = (req, res) => {
+    res.redirect('/skills/electronics');
+};
+
+exports.getSkills = async (req, res) => {
+    const skills = await Skill.find({ set: req.params.skillTreeName });
+    res.render('skills-list', { skills });
+};
+
+exports.getAddSkillForm = (req, res) => {
+    res.render('add-skill', { skillTreeName: req.params.skillTreeName });
+};
+
+exports.addSkill = async (req, res) => {
+    const { text, description, tasks, resources, score, icon } = req.body;
+    try {
+        await Skill.create({ text, description, tasks, resources, score, icon, set: req.params.skillTreeName });
+        res.redirect(`/skills/${req.params.skillTreeName}`);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to add skill' });
+    }
+};
+
+exports.getSkillDetails = async (req, res) => {
+    const skill = await Skill.findById(req.params.skillID);
+    res.render('skill-details', { skill });
+};
+
+exports.verifySkill = async (req, res) => {
+    const { userSkillId, approved } = req.body;
+    try {
+        const userSkill = await UserSkill.findById(userSkillId);
+        userSkill.verifications.push({ user: req.user._id, approved });
+        userSkill.verified = userSkill.verifications.every(v => v.approved);
+        await userSkill.save();
+        res.json({ success: true });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to verify skill' });
+    }
+};
+
+exports.deleteSkill = async (req, res) => {
+    try {
+        await Skill.findByIdAndDelete(req.params.skillID);
+        res.redirect(`/skills/${req.params.skillTreeName}`);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to delete skill' });
+    }
+};
