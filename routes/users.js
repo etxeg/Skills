@@ -89,5 +89,36 @@ router.get('/logout', (req, res) => {
   });
 });
 
+//Edit aukera
+/*
+async function getData(id) {
+  let response = await fetch('http://skills.etxeg.live/scripts/data.json');
+  if (!response.ok) throw new Error('Error al cargar el JSON');
+  let data = await response.json();
+  //console.log(data);
+  let item = data.find(item => item.id === id); 
+  console.log("item",item);
+  return item
+}
+
+router.get('/users/skill/edit/:id', async function(req, res, next) {
+  const hexagonId = req.params.id;
+
+  let data = await getData(hexagonId);
+  let text = data.text
+  let icon = `/electronics/icons/icon${hexagonId}.svg`;
+  let description = data; // hacer que funcion, me voy a cagar
+
+  console.log(data.text);
+  res.render('edit', { 
+    skillId: hexagonId,
+    title: text,
+    description: description || skillData.description,
+    score: score || skillData.score, 
+    tasks: tasks || skillData.tasks, 
+    resources: resources || skillData.resources,
+    icon: icon
+  });
+});*/
 
 module.exports = router;

@@ -233,9 +233,6 @@ function createSkillCard(data, imagen) {
     return carta;
 }
 
-
-
-
 function handleButtonHover(event) {
     let button = event.currentTarget;
 
@@ -264,7 +261,7 @@ function handlePencilIconClick(event) {
     const hexagonId = parentWrapper.getAttribute('data-id');
 
     // Navigate to the pencil page with the hexagon ID
-    window.location.href = `/skill/edit/${hexagonId}`;
+    window.location.href = `/users/skill/edit/${hexagonId}`;
 }
 
 function handleNotebookIconClick(event) {
@@ -277,25 +274,4 @@ function handleNotebookIconClick(event) {
 
     // Navigate to the notebook page with the hexagon ID
     window.location.href = `/skill/${hexagonId}`;
-}
-
-function handleMenuItemClick(event) {
-    event.preventDefault();
-    let menuItem = event.currentTarget;
-    switch (menuItem.textContent) {
-        case 'Leaderboard':
-            window.location.href = '/leaderboard';
-            break;
-        case 'About':
-            window.location.href = '/about';
-            break;
-        case 'Logout':
-            window.location.href = '/logout';
-            break;
-        case 'Admin Dashboard':
-            window.location.href = '/admin';
-            break;
-        default:
-            break;
-    }
 }

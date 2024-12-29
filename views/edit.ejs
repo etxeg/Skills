@@ -156,23 +156,23 @@
      <div class="content-wrapper">
         <b>Skill Text:</b>
         <br>
-        <textarea name="hex-text" id="hex-text" cols="50"><%= title %></textarea>
+        <textarea name="hex-text" id="hex-text" cols="50"><%=title %></textarea>
         <br>
         <b>Description:</b>
         <br>
-        <textarea name="description" id="description" cols="50"><%= description %></textarea>
+        <textarea name="description" id="description" cols="50"><%=description %></textarea>
         <br>
         <b>Tasks to Complete (one per line):</b>
         <br>
-        <textarea name="task-list" id="task-list" rows="4" cols="50"><%= tasks.map(task => task.trim()).join('\n') %></textarea>
+        <textarea name="task-list" id="task-list" rows="4" cols="50"><%=tasks.map(task => task.trim()).join('\n') %></textarea>
         <br>
         <b>Resources (one per line):</b>
         <br>
-        <textarea name="resource-list" id="resource-list" rows="4" cols="50"><%= resources.map(resource => resource.trim()).join('\n') %></textarea>
+        <textarea name="resource-list" id="resource-list" rows="4" cols="50"><%=resources.map(resource => resource.trim()).join('\n') %></textarea>
         <br>
         <b>Skill Score:</b>
         <br>
-        <textarea name="skillScore" id="skillScore" rows="1" cols="50"><%= score %></textarea>
+        <textarea name="skillScore" id="skillScore" rows="1" cols="50"><%=score %></textarea>
         <br>
         <b>Upload Icon(30x30 png):</b>
         <br>
@@ -180,9 +180,9 @@
             <input type="file" id="fileInput" name="file">
         </form>          
         <br>
-        <button class="button button1"> Save </button>
-        <button class="button button2"> Cancel </button>
-        <button class="button button3"> Delete Skill</button>
+        <button id="save" class="button button1"> Save </button>
+        <button id="cancel" class="button button2"> Cancel </button>
+        <button id="delete" class="button button3"> Delete Skill</button>
      </div>
 
      <script>
@@ -195,12 +195,58 @@
 
       }
 
-      function deleteSkill (event) {
-        event.stopPropagation();
-        window.location.href = `/`;
-      }
+      document.getElementById('cancel').addEventListener('click', cancelEdit);
+      document.getElementById('delete').addEventListener('click', async function () {
+          if (confirm('Zihur skill hau ezabatu nahi duzula?')) {
+            const skillId = '<%= skillId %>';
+            try {
+              const response = await fetch(`/skill/${skillId}`, {
+                method: 'DELETE',
+              });
 
-      document.querySelector('body > div > div.content-wrapper > button.button.button2').addEventListener('click', cancelEdit);
+              if (response.ok) {
+                alert('Skill hau ezabatua izan da');
+                window.location.href = '/'; // Redirigir a la página principal
+              } else {
+                alert('Errorea skill ezabatzerako orduan');
+              }
+            } catch (error) {
+              console.error('Error:', error);
+              alert('Errorea skill ezabatzerako orduan');
+            }
+          }
+        });
+        document.getElementById('save').addEventListener('click', async function() {
+          const skillId = '<%= skillId %>';
+
+          const updatedSkill = {
+            text: document.getElementById('hex-text').value,
+            description: document.getElementById('description').value,
+            tasks: document.getElementById('task-list').value.split('\n').map(task => task.trim()), // Convertir en array
+            resources: document.getElementById('resource-list').value.split('\n').map(resource => resource.trim()), // Convertir en array
+            score: parseInt(document.getElementById('skillScore').value) || 1
+          };
+          try {
+            const response = await fetch(`/skill/${skillId}`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(updatedSkill)
+            });
+            if (response.ok) {
+              alert('Skill actualizado correctamente');
+              window.location.href = '/'; // Redirigir a la página principal
+            } else {
+              const errorText = await response.text();
+              console.error('Error al actualizar el skill:', errorText);
+              alert('Error al actualizar el skill');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            alert('Errorea skill eguneratzeko orduan');
+          }
+        });
      </script>
 
 </body>
