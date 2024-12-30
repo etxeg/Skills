@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Skill</title>
+</head>
+<body>
+    <h1>Edit Skill in <%= skillTreeName %></h1>
+    <form action="/skills/<%= skillTreeName %>/edit/<%= skill._id %>" method="POST">
+        <label for="text">Skill Name:</label>
+        <input type="text" id="text" name="text" value="<%= skill.text %>" required><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required><%= skill.description %></textarea><br>
+
+        <label for="tasks">Tasks (comma-separated):</label>
+        <input type="text" id="tasks" name="tasks" value="<%= skill.tasks.join(', ') %>"><br>
+
+        <label for="resources">Resources (comma-separated):</label>
+        <input type="text" id="resources" name="resources" value="<%= skill.resources.join(', ') %>"><br>
+
+        <label for="score">Score:</label>
+        <input type="number" id="score" name="score" value="<%= skill.score %>" required><br>
+
+        <label for="icon">Icon URL:</label>
+        <input type="text" id="icon" name="icon" value="<%= skill.icon %>"><br>
+
+        <button type="submit">Update Skill</button>
+    </form>
+</body>
+</html>
