@@ -205,7 +205,7 @@ function handlePencilIconClick(event) {
     const hexagonId = parentWrapper.getAttribute('data-id');
 
     // Navigate to the pencil page with the hexagon ID
-    window.location.href = `/skill/edit/${hexagonId}`;
+    window.location.href = `/skills/electronics/edit/${hexagonId}`;
 }
 
 function handleNotebookIconClick(event) {

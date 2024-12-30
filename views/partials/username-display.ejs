@@ -5,7 +5,7 @@
   
     <% if (isLoggedIn) { %>
       <!-- Links visible only when logged in -->
-      <a href="/leaderboard.ejs" style="color: blue; text-decoration: none; margin: 0 15px; font-weight: bold;">Leaderboard</a>
+      <a href="/leaderboard" style="color: blue; text-decoration: none; margin: 0 15px; font-weight: bold;">Leaderboard</a>
       <% if (user && user.role === 'admin') { %>
         <!-- Admin Dashboard link visible only for admins -->
         <a href="/admin/dashboard" style="color: blue; text-decoration: none; margin: 0 15px; font-weight: bold;">Admin Dashboard</a>
