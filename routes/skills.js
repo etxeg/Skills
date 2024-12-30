@@ -13,5 +13,7 @@ router.post('/:skillTreeName/add', isAuthenticatedAdmin, skillsController.addSki
 router.get('/:skillTreeName/view/:skillID', isAuthenticated, skillsController.getSkillDetails);
 router.post('/:skillTreeName/:skillID/verify', isAuthenticated, skillsController.verifySkill);
 router.post('/:skillTreeName/delete/:skillID', isAuthenticatedAdmin, skillsController.deleteSkill);
+router.get('/:skillTreeName/edit/:skillID', isAuthenticatedAdmin, skillsController.getEditSkillForm);
+router.post('/:skillTreeName/edit/:skillID', isAuthenticatedAdmin, skillsController.editSkill);
 
 module.exports = router;

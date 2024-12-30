@@ -1,6 +1,7 @@
 const Badge = require('../models/badge.model');
 const User = require('../models/user.model');
 
+
 exports.getDashboard = (req, res) => {
     res.render('admin-dashboard', { username: req.session.user?.username, error: null });
 };

@@ -19,12 +19,15 @@ exports.getAddSkillForm = (req, res) => {
 exports.addSkill = async (req, res) => {
     const { text, description, tasks, resources, score, icon } = req.body;
     try {
+        const lastSkill = await Skill.findOne().sort({ id: -1 }).exec();
+        const nextId = lastSkill ? parseInt(lastSkill.id) + 1 : 1; // Start at 1 if no skills exist
         // Convert comma-separated strings into arrays
         const tasksArray = tasks ? tasks.split(',').map(task => task.trim()) : [];
         const resourcesArray = resources ? resources.split(',').map(resource => resource.trim()) : [];
 
         // Create a new skill
         await Skill.create({ 
+            id: nextId,
             text, 
             description, 
             tasks: tasksArray, 
@@ -43,7 +46,9 @@ exports.addSkill = async (req, res) => {
 };
 
 exports.getSkillDetails = async (req, res) => {
-    const skill = await Skill.findById(req.params.hexagonId);
+    const skillID = req.params.skillID;
+    const skill = await Skill.findOne({id: skillID});
+    console.log(skill);
     res.render('skill-details', { skill , error: null });
 };
 
@@ -66,5 +71,34 @@ exports.deleteSkill = async (req, res) => {
         res.redirect(`/skills/${req.params.skillTreeName}`);
     } catch (error) {
         res.status(500).json({ error: 'Failed to delete skill' });
+    }
+};
+
+exports.getEditSkillForm = async (req, res) => {
+    try {
+        const skill = await Skill.findById(req.params.skillID);
+        if (!skill) {
+            return res.status(404).send('Skill not found');
+        }
+        res.render('skill-edit', { skill, skillTreeName: req.params.skillTreeName });
+    } catch (error) {
+        res.status(500).send('Server error');
+    }
+};
+
+exports.editSkill = async (req, res) => {
+    const { text, description, tasks, resources, score, icon } = req.body;
+    try {
+        await Skill.findByIdAndUpdate(req.params.skillID, {
+            text,
+            description,
+            tasks: tasks ? tasks.split(',') : [], // Assuming tasks are comma-separated
+            resources: resources ? resources.split(',') : [], // Assuming resources are comma-separated
+            score,
+            icon,
+        });
+        res.redirect(`/skills/${req.params.skillTreeName}`);
+    } catch (error) {
+        res.status(500).send('Failed to update skill');
     }
 };
