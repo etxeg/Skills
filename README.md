@@ -18,5 +18,3 @@ Praktika honek backend garapenean sakontzeko aukera paregabea eman digu. MongoDB
 Hemen lista bat funtzionatzea lortu ez dugun gauzekin:
 1. Edit skill lehioan sartzerako orduan ez da ikonoa bistaratzea lortu.
 2. Skill task amaituak badaude, hauen hexagonoak berdez edo gorriz koloreztatzea
-
-Eskerrik asko aukera honengatik!
