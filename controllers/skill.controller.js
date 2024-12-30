@@ -6,8 +6,10 @@ exports.redirectToDefaultTree = (req, res) => {
 };
 
 exports.getSkills = async (req, res) => {
-    const skills = await Skill.find({ set: req.params.skillTreeName });
-    res.render('skills-list', { skills });
+    skillTreeName = req.params.skillTreeName;
+    const skills = await Skill.find({ set: skillTreeName });
+    console.log(skills);
+    res.render('skills-list', { skills , error: null, skillTreeName });
 };
 
 exports.getAddSkillForm = (req, res) => {

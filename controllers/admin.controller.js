@@ -2,12 +2,12 @@ const Badge = require('../models/badge.model');
 const User = require('../models/user.model');
 
 exports.getDashboard = (req, res) => {
-    res.render('admin-dashboard', { username: req.user.username });
+    res.render('admin-dashboard', { username: req.session.user?.username, error: null });
 };
 
 exports.getBadges = async (req, res) => {
     const badges = await Badge.find().sort({ bitpoints_min: 1 });
-    res.render('admin-badges', { badges });
+    res.render('admin-badges', { badges , error: null });
 };
 
 exports.getBadgeEditForm = async (req, res) => {

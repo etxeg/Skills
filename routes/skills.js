@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { isAuthenticated, isAuthenticatedAdmin } = require('../middleware/auth');
 const skillsController = require('../controllers/skill.controller');
+const { isAuthenticated, isAuthenticatedAdmin } = require('../middlewares/auth.middleware');
+
+
 
 // Endpoints
 router.get('/', isAuthenticated, skillsController.redirectToDefaultTree);

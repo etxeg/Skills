@@ -85,7 +85,7 @@ router.get('/logout', (req, res) => {
       console.error('Session destroy error:', err);
       return res.status(500).send('Server error');
     }
-    res.redirect('/');
+    res.redirect('/users/login');
   });
 });
 

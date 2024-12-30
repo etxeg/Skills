@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { isAuthenticatedAdmin } = require('../middleware/auth');
+const { isAuthenticatedAdmin } = require('../middlewares/auth.middleware.js');
 const adminController = require('../controllers/admin.controller');
 
 // Endpoints
