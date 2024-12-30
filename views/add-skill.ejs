@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Skill</title>
+</head>
+<body>
+    <h1>Add a New Skill to <%= skillTreeName %></h1>
+    <form action="/skills/<%= skillTreeName %>/add" method="POST">
+        <div>
+            <label for="text">Skill Name:</label>
+            <input type="text" id="text" name="text" required>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+        </div>
+        <div>
+            <label for="tasks">Tasks (comma-separated):</label>
+            <input type="text" id="tasks" name="tasks" placeholder="e.g., Task1, Task2">
+        </div>
+        <div>
+            <label for="resources">Resources (comma-separated):</label>
+            <input type="text" id="resources" name="resources" placeholder="e.g., Resource1, Resource2">
+        </div>
+        <div>
+            <label for="score">Score:</label>
+            <input type="number" id="score" name="score" min="1" required>
+        </div>
+        <div>
+            <label for="icon">Icon URL:</label>
+            <input type="url" id="icon" name="icon" placeholder="https://example.com/icon.png">
+        </div>
+        <button type="submit">Add Skill</button>
+    </form>
+</body>
+</html>
