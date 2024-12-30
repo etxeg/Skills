@@ -15,5 +15,6 @@ router.post('/:skillTreeName/:skillID/verify', isAuthenticated, skillsController
 router.post('/:skillTreeName/delete/:skillID', isAuthenticatedAdmin, skillsController.deleteSkill);
 router.get('/:skillTreeName/edit/:skillID', isAuthenticatedAdmin, skillsController.getEditSkillForm);
 router.post('/:skillTreeName/edit/:skillID', isAuthenticatedAdmin, skillsController.editSkill);
+router.post('/:skillId/submitUserSkill', isAuthenticated, skillsController.submitUserSkill);
 
 module.exports = router;

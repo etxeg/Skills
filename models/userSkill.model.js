@@ -2,13 +2,11 @@ const mongoose = require('mongoose');
 
 const UserSkillSchema = new mongoose.Schema({
     user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        type: String, // Storing the username as a string
         required: true
     },
     skill: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Skill',
+        type: Number, // Storing the skill id as a number (e.g., skill ID as 4)
         required: true
     },
     completed: {
@@ -28,8 +26,7 @@ const UserSkillSchema = new mongoose.Schema({
     verifications: [
         {
             user: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'User'
+                type: String, // You can store verifier as username too, or as ObjectId
             },
             approved: {
                 type: Boolean
