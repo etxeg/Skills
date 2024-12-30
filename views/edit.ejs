@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> Skill Editor</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .skill-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+    }
+
+    .svg-wrapper {
+      margin-bottom: 20px;
+    }
+
+    .content-wrapper {
+      width: 100%;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group textarea,
+    .form-group input {
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .buttons button {
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .button1 {
+      background-color: rgb(20, 180, 20);
+    }
+
+    .button2 {
+      background-color: rgb(100, 100, 100);
+    }
+
+    .button3 {
+      background-color: rgb(180, 20, 20);
+    }
+
+    .button1:hover,
+    .button2:hover,
+    .button3:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <h1>Edit Skill: <%= title %></h1>
+
+  <div class="skill-container">
+    <!-- Hexagon Preview -->
+    <div class="svg-wrapper">
+      <svg width="100" height="100" viewBox="0 0 100 100">
+        <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" fill="white" stroke="black" stroke-width="1" />
+        <text x="50%" y="25" font-size="9px" font-weight="bold" fill="black" text-anchor="middle">
+          <% 
+            let words = title.split(' ');
+            let maxCharsPerLine = 18;  // Max characters per line
+            let line = '';
+            let dy = 1.2;
+            words.forEach((word, index) => {
+              line += word + ' ';
+              if (line.length > maxCharsPerLine) {
+                %>
+                <tspan x="50%" dy="<%= dy %>em" font-weight="bold"><%= line.trim() %></tspan>
+                <%
+                line = '';
+                dy += 1.2; // Increase vertical space for next line
+              }
+            });
+            // Add remaining text if any
+            if (line) {
+              %>
+              <tspan x="50%" dy="<%= dy %>em" font-weight="bold"><%= line.trim() %></tspan>
+              <%
+            }
+          %>
+        </text>
+        <image x="35%" y="60%" width="30" height="30" href="<%= icon.svg %>" />
+      </svg>
+    </div>
+
+    <!-- Form for Editing Skill -->
+    <div class="content-wrapper">
+      <div class="form-group">
+        <label for="hex-text">Skill Text:</label>
+        <textarea id="hex-text" name="hex-text" rows="2"><%= title %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4"><%= description %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="task-list">Tasks to Complete (one per line):</label>
+        <textarea id="task-list" name="task-list" rows="4"><%= tasks.map(task => task.trim()).join('\n') %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="resource-list">Resources (one per line):</label>
+        <textarea id="resource-list" name="resource-list" rows="4"><%= resources.map(resource => resource.trim()).join('\n') %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="skillScore">Skill Score:</label>
+        <input type="text" id="skillScore" name="skillScore" value="<%= score %>" />
+      </div>
+
+      <div class="form-group">
+        <label for="fileInput">Upload Icon (30x30 PNG):</label>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+          <input type="file" id="fileInput" name="file">
+        </form>
+      </div>
+
+      <div class="buttons">
+        <button id="save" class="button button1">Save</button>
+        <button id="cancel" class="button button2">Cancel</button>
+        <button id="delete" class="button button3">Delete Skill</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('cancel').addEventListener('click', () => {
+      window.location.href = '/';
+    });
+
+    document.getElementById('delete').addEventListener('click', async () => {
+      if (confirm('Are you sure you want to delete this skill?')) {
+        const skillId = '<%= skillId %>';
+        try {
+          const response = await fetch(`/skill/${skillId}`, {
+            method: 'DELETE',
+          });
+
+          if (response.ok) {
+            alert('Skill successfully deleted.');
+            window.location.href = '/';
+          } else {
+            alert('Error deleting the skill.');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error deleting the skill.');
+        }
+      }
+    });
+
+    document.getElementById('save').addEventListener('click', async () => {
+      const skillId = '<%= skillId %>';
+      const updatedSkill = {
+        text: document.getElementById('hex-text').value,
+        description: document.getElementById('description').value,
+        tasks: document.getElementById('task-list').value.split('\n').map(task => task.trim()),
+        resources: document.getElementById('resource-list').value.split('\n').map(resource => resource.trim()),
+        score: parseInt(document.getElementById('skillScore').value) || 1,
+      };
+
+      try {
+        const response = await fetch(`/skill/${skillId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedSkill),
+        });
+
+        if (response.ok) {
+          alert('Skill successfully updated.');
+          window.location.href = '/';
+        } else {
+          alert('Error updating the skill.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Error updating the skill.');
+      }
+    });
+  </script>
+</body>
+</html>

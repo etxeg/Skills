@@ -1,347 +1,1344 @@
 [
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd001')",
     "id": "1",
     "text": "Light up an LED for the first time",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon1.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon1.svg",
+    "set": "electronics",
+    "tasks": [
+      "Gather basic components: LED, resistor, power source",
+      "Connect LED with appropriate resistor",
+      "Apply power and observe LED lighting up",
+      "Document your first circuit"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/light-emitting-diodes-leds",
+      "https://www.instructables.com/Basic-LED-Circuit/"
+    ],
+    "description": "Learn the basics of electrical circuits by lighting up your first LED. This fundamental skill teaches circuit polarity, resistance, and basic safety.",
+    "score": 1
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd002')",
     "id": "2",
     "text": "Learn to use wire strippers",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon2.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon2.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn about different wire gauges",
+      "Practice stripping different types of wires",
+      "Strip wires without damaging conductors",
+      "Properly measure and strip wire lengths"
+    ],
+    "resources": [
+      "https://www.wikihow.com/Strip-Wire",
+      "https://www.instructables.com/How-to-strip-wire/"
+    ],
+    "description": "Master the essential skill of properly stripping wires for electronics projects. Learn about wire gauges and how to avoid damaging conductors.",
+    "score": 1
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd003')",
     "id": "3",
     "text": "Complete an electronics kit",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon3.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon3.svg",
+    "set": "electronics",
+    "tasks": [
+      "Choose an appropriate beginner electronics kit",
+      "Follow assembly instructions carefully",
+      "Identify and organize all components",
+      "Complete the project successfully",
+      "Test the finished product"
+    ],
+    "resources": [
+      "https://www.adafruit.com/categories/90",
+      "https://www.makershed.com/collections/beginner-kits"
+    ],
+    "description": "Build confidence in electronics by completing a pre-designed kit. Learn component identification, assembly techniques, and basic troubleshooting.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd004')",
     "id": "4",
     "text": "Learn to Solder",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon4.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon4.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn soldering safety procedures",
+      "Practice proper soldering technique",
+      "Complete basic through-hole soldering",
+      "Inspect solder joints for quality",
+      "Clean and maintain soldering equipment"
+    ],
+    "resources": [
+      "https://learn.adafruit.com/adafruit-guide-excellent-soldering",
+      "https://www.youtube.com/watch?v=QKbJxytERvg"
+    ],
+    "description": "Master the fundamental skill of soldering electronic components. Learn proper technique, safety, and how to create reliable connections.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd005')",
     "id": "5",
     "text": "Learn to use a breadboard",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon5.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon5.svg",
+    "set": "electronics",
+    "tasks": [
+      "Understand breadboard layout and connections",
+      "Build simple circuits on breadboard",
+      "Use power rails effectively",
+      "Practice proper component placement",
+      "Test circuits before permanent assembly"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard",
+      "https://www.sciencebuddies.org/science-fair-projects/references/how-to-use-a-breadboard"
+    ],
+    "description": "Learn to prototype circuits quickly and safely using a breadboard. Essential skill for testing circuit designs before permanent assembly.",
+    "score": 1
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd006')",
     "id": "6",
     "text": "Get a circuit wrong and try again",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon6.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon6.svg",
+    "set": "electronics",
+    "tasks": [
+      "Attempt to build a circuit",
+      "Identify why it's not working",
+      "Learn from mistakes",
+      "Successfully debug and fix issues",
+      "Document lessons learned"
+    ],
+    "resources": [
+      "https://www.circuitbasics.com/how-to-troubleshoot-electronic-circuits/",
+      "https://www.allaboutcircuits.com/textbook/reference/chpt-7/troubleshooting-basics/"
+    ],
+    "description": "Learn valuable troubleshooting skills by making and fixing mistakes. Build resilience and problem-solving abilities.",
+    "score": 1
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd007')",
     "id": "7",
-    "text": "Learn Ohm’s Law",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon7.svg"
+    "text": "Learn Ohm's Law",
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon7.svg",
+    "set": "electronics",
+    "tasks": [
+      "Study Ohm's Law formula",
+      "Practice calculating voltage, current, and resistance",
+      "Apply Ohm's Law in real circuits",
+      "Verify calculations with measurements",
+      "Complete practice problems"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/voltage-current-resistance-and-ohms-law",
+      "https://www.electronics-tutorials.ws/dccircuits/dcp_2.html"
+    ],
+    "description": "Master the fundamental relationship between voltage, current, and resistance. Essential knowledge for all electronics work.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd008')",
     "id": "8",
-    "text": "Fix something something that’s broken",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon8.svg"
+    "text": "Fix something that's broken",
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon8.svg",
+    "set": "electronics",
+    "tasks": [
+      "Identify a broken electronic device",
+      "Diagnose the problem",
+      "Research repair solutions",
+      "Attempt repair safely",
+      "Test the fixed device"
+    ],
+    "resources": [
+      "https://www.ifixit.com/Guide",
+      "https://www.instructables.com/Electronics-Repair/"
+    ],
+    "description": "Apply electronics knowledge to repair broken devices. Build practical troubleshooting and repair skills.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd009')",
     "id": "9",
     "text": "Measure voltage with a multimeter",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon9.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon9.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn multimeter safety",
+      "Set up multimeter for voltage measurement",
+      "Practice measuring DC voltage",
+      "Practice measuring AC voltage",
+      "Record and interpret readings"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/how-to-use-a-multimeter",
+      "https://www.fluke.com/en-us/learn/blog/digital-multimeters/how-to-measure-voltage"
+    ],
+    "description": "Learn to safely and accurately measure voltage in circuits using a multimeter. Essential diagnostic and testing skill.",
+    "score": 1
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd010')",
     "id": "10",
     "text": "Learn to read a schematic",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon10.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon10.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn common schematic symbols",
+      "Understand circuit flow and connections",
+      "Practice reading simple schematics",
+      "Build circuits from schematics",
+      "Document component values and connections"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/beginner/basic-electronics.html",
+      "https://www.circuitbasics.com/how-to-read-schematics/"
+    ],
+    "description": "Develop the ability to read and understand electronic circuit diagrams. Critical skill for building and troubleshooting circuits.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd011')",
     "id": "11",
     "text": "Learn to read a datasheet",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon11.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon11.svg",
+    "set": "electronics",
+    "tasks": [
+      "Understand datasheet organization",
+      "Find key specifications",
+      "Interpret graphs and charts",
+      "Use recommended circuit configurations",
+      "Apply datasheet information in projects"
+    ],
+    "resources": [
+      "https://www.sparkfun.com/tutorials/223",
+      "https://www.electronics-notes.com/articles/electronic_components/datasheets/how-to-read-electronic-component-datasheets.php"
+    ],
+    "description": "Learn to extract and understand component specifications and requirements from technical documentation.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd012')",
     "id": "12",
     "text": "Learn to control the brightness of an LED",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon12.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon12.svg",
+    "set": "electronics",
+    "tasks": [
+      "Understand PWM basics",
+      "Build variable resistance circuit",
+      "Implement PWM control",
+      "Test different brightness levels",
+      "Measure power consumption"
+    ],
+    "resources": [
+      "https://learn.adafruit.com/led-tricks-gamma-correction",
+      "https://www.arduino.cc/en/Tutorial/Fade"
+    ],
+    "description": "Learn different methods to control LED brightness, including resistance variation and PWM techniques.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd013')",
     "id": "13",
     "text": "Learn to desolder a through hole component",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon4.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon4.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn desoldering safety",
+      "Practice with desoldering tools",
+      "Remove components without damage",
+      "Clean PCB pads",
+      "Verify pad condition after removal"
+    ],
+    "resources": [
+      "https://learn.adafruit.com/adafruit-guide-excellent-desoldering",
+      "https://www.youtube.com/watch?v=N_dvf45hN6Y"
+    ],
+    "description": "Master the technique of safely removing soldered components from circuit boards. Essential for repairs and modifications.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd014')",
     "id": "14",
     "text": "Make something that makes noise",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon14.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon14.svg",
+    "set": "electronics",
+    "tasks": [
+      "Design simple audio circuit",
+      "Build oscillator or tone generator",
+      "Add volume control",
+      "Test different frequencies",
+      "Add speaker or buzzer"
+    ],
+    "resources": [
+      "https://www.instructables.com/Basic-Electronics-Making-Sound/",
+      "https://learn.sparkfun.com/tutorials/musical-tesla-coil"
+    ],
+    "description": "Create a circuit that generates sound. Learn about oscillators, speakers, and audio electronics basics.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd015')",
     "id": "15",
     "text": "Turn a breadboard circuit into a schematic",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon10.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon10.svg",
+    "set": "electronics",
+    "tasks": [
+      "Document breadboard connections",
+      "Identify all components",
+      "Draw circuit symbols correctly",
+      "Show all connections clearly",
+      "Verify schematic matches breadboard"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/beginner/beginner-electronics.html",
+      "https://www.circuitlab.com/editor/"
+    ],
+    "description": "Learn to document working circuits by creating proper schematics. Important skill for sharing and reproducing designs.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd016')",
     "id": "16",
     "text": "Measure current with a multimeter",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon9.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon9.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn current measurement safety",
+      "Set up multimeter for current reading",
+      "Practice measuring DC current",
+      "Practice measuring AC current",
+      "Record and analyze measurements"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/how-to-use-a-multimeter/measuring-current",
+      "https://www.fluke.com/en-us/learn/blog/digital-multimeters/how-to-measure-current"
+    ],
+    "description": "Learn to safely measure electrical current in circuits. Essential for power consumption analysis and troubleshooting.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd017')",
     "id": "17",
     "text": "Make a voltage divider to lower the voltage for a project",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon17.svg"
-  },
-  {
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon17.svg",
+    "set": "electronics",
+    "tasks": [
+      "Calculate required resistor values",
+      "Build voltage divider circuit",
+      "Test output voltage",
+      "Measure current draw",
+      "Verify stability under load"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/voltage-dividers",
+      "https://www.electronics-tutorials.ws/resistor/potential-divider.html"
+    ],
+    "description": "Learn to reduce voltage levels safely using resistive voltage dividers. Important for interfacing different voltage levels.",
+    "score": 2
+  }, {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd018')",
     "id": "18",
     "text": "Turn something on using a sensor",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon18.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon18.svg",
+    "set": "electronics",
+    "tasks": [
+      "Select appropriate sensor type",
+      "Wire sensor to circuit",
+      "Configure sensor sensitivity",
+      "Test sensor response",
+      "Implement trigger action"
+    ],
+    "resources": [
+      "https://learn.adafruit.com/pir-passive-infrared-proximity-motion-sensor",
+      "https://www.sparkfun.com/tutorials/sensors"
+    ],
+    "description": "Learn to use sensors to trigger circuit actions. Introduction to automated electronic systems.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd019')",
     "id": "19",
     "text": "Use a diode protect your circuit from reverse voltages",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon19.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon19.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn about diode characteristics",
+      "Select appropriate protection diode",
+      "Install reverse protection",
+      "Test protection circuit",
+      "Verify voltage drop"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/diodes",
+      "https://www.electronics-tutorials.ws/diode/diode_3.html"
+    ],
+    "description": "Learn to protect circuits from reverse polarity damage using diodes. Essential for robust circuit design.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd020')",
     "id": "20",
     "text": "Make an oscillator that makes noise",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon14.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon14.svg",
+    "set": "electronics",
+    "tasks": [
+      "Design oscillator circuit",
+      "Calculate frequency components",
+      "Build and test oscillator",
+      "Add audio output",
+      "Adjust frequency control"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/oscillator/oscillators.html",
+      "https://www.circuitbasics.com/555-timer-basics-astable-mode/"
+    ],
+    "description": "Create an electronic oscillator circuit that generates audible tones. Learn about frequency generation.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd021')",
     "id": "21",
     "text": "Use a relay to switch something on at a higher voltage",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon21.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon21.svg",
+    "set": "electronics",
+    "tasks": [
+      "Select appropriate relay",
+      "Wire control circuit",
+      "Connect load circuit",
+      "Test switching operation",
+      "Implement safety measures"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/relay-switch-circuit",
+      "https://www.electronics-tutorials.ws/blog/relay-switch-circuit.html"
+    ],
+    "description": "Learn to control high-voltage circuits safely using relays. Important for power control applications.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd022')",
     "id": "22",
     "text": "Make a capacitor rocket (too much voltage)",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon22.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon22.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn capacitor safety",
+      "Understand voltage ratings",
+      "Observe capacitor failure",
+      "Document failure mode",
+      "Learn prevention measures"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/capacitor/cap_3.html",
+      "https://www.allaboutcircuits.com/textbook/direct-current/chpt-13/safety-considerations/"
+    ],
+    "description": "Experience and understand component failure modes safely. Learn about voltage ratings and safety margins.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd023')",
     "id": "23",
-    "text": "Learn to solder surfcace mount parts",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon23.svg"
+    "text": "Learn to solder surface mount parts",
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon23.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn SMD component types",
+      "Practice proper technique",
+      "Use flux appropriately",
+      "Master temperature control",
+      "Verify solder joints"
+    ],
+    "resources": [
+      "https://learn.adafruit.com/smt-manufacturing",
+      "https://www.sparkfun.com/tutorials/36"
+    ],
+    "description": "Master the technique of soldering small surface-mount components. Advanced skill for modern electronics.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd024')",
     "id": "24",
     "text": "Use a 555 timer in a circuit",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon24.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon24.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn 555 timer modes",
+      "Calculate timing components",
+      "Build astable circuit",
+      "Build monostable circuit",
+      "Test different frequencies"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/waveforms/555_timer.html",
+      "https://www.circuitbasics.com/555-timer-basics-monostable-mode/"
+    ],
+    "description": "Learn to use the versatile 555 timer IC for timing and oscillation applications.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd025')",
     "id": "25",
     "text": "Make a sound louder with an amplifier",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon14.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon14.svg",
+    "set": "electronics",
+    "tasks": [
+      "Select amplifier IC",
+      "Calculate gain requirements",
+      "Build amplifier circuit",
+      "Add volume control",
+      "Test audio quality"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/audio-amplifier-tutorial",
+      "https://www.electronics-tutorials.ws/amplifier/amp_1.html"
+    ],
+    "description": "Learn to amplify audio signals using electronic amplifiers. Introduction to analog signal processing.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd026')",
     "id": "26",
     "text": "Use addressable RGB LEDs in a project",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon12.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon12.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn RGB LED protocols",
+      "Wire LED strip properly",
+      "Program color patterns",
+      "Implement animations",
+      "Control multiple LEDs"
+    ],
+    "resources": [
+      "https://learn.adafruit.com/adafruit-neopixel-uberguide",
+      "https://learn.sparkfun.com/tutorials/ws2812-breakout-hookup-guide"
+    ],
+    "description": "Master the control of modern RGB LED strips and arrays. Learn about serial communication and timing.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd027')",
     "id": "27",
     "text": "Make a project with a Raspberry Pi",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon27.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon27.svg",
+    "set": "electronics",
+    "tasks": [
+      "Set up Raspberry Pi",
+      "Learn GPIO programming",
+      "Interface with sensors",
+      "Create control software",
+      "Build complete project"
+    ],
+    "resources": [
+      "https://projects.raspberrypi.org/en/projects",
+      "https://www.raspberrypi.org/documentation/usage/gpio/"
+    ],
+    "description": "Learn to use Raspberry Pi for electronics projects. Introduction to embedded Linux and GPIO control.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd028')",
     "id": "28",
     "text": "Let the smoke out accidentally",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon28.svg"
-  },
-  {
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon28.svg",
+    "set": "electronics",
+    "tasks": [
+      "Identify component failure",
+      "Analyze cause of failure",
+      "Document what went wrong",
+      "Learn prevention measures",
+      "Replace damaged components"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/safety/electrical-safety.html",
+      "https://learn.adafruit.com/debugging-electronics"
+    ],
+    "description": "Experience and learn from component failure. Important lesson in electronics safety and troubleshooting.",
+    "score": 1
+  }, {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd029')",
     "id": "29",
     "text": "Use fritzing or TinkerCAD to create a circuit diagram",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon29.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon29.svg",
+    "set": "electronics",
+    "tasks": [
+      "Install circuit design software",
+      "Learn basic interface",
+      "Create schematic view",
+      "Create breadboard view",
+      "Export diagrams properly"
+    ],
+    "resources": [
+      "https://fritzing.org/learning/tutorials",
+      "https://www.tinkercad.com/learn/circuits"
+    ],
+    "description": "Learn to use digital tools for circuit design and documentation. Essential for sharing and collaborating on projects.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd030')",
     "id": "30",
     "text": "Make something with Arduino",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon30.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon30.svg",
+    "set": "electronics",
+    "tasks": [
+      "Set up Arduino IDE",
+      "Learn basic programming",
+      "Connect components",
+      "Upload and test code",
+      "Debug hardware/software"
+    ],
+    "resources": [
+      "https://www.arduino.cc/en/Tutorial/",
+      "https://learn.adafruit.com/series/learn-arduino"
+    ],
+    "description": "Create an interactive project using Arduino. Learn microcontroller basics and programming.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd031')",
     "id": "31",
     "text": "Let the smoke out of an Arduino accidentally",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon31.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon31.svg",
+    "set": "electronics",
+    "tasks": [
+      "Identify failure cause",
+      "Document the mistake",
+      "Learn protection methods",
+      "Replace microcontroller",
+      "Implement safeguards"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/avoiding-disaster",
+      "https://www.arduino.cc/en/Guide/Troubleshooting"
+    ],
+    "description": "Learn from microcontroller failures. Important lessons in voltage levels and current limits.",
+    "score": 1
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd032')",
     "id": "32",
     "text": "Measure frequency with a multimeter",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon9.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon9.svg",
+    "set": "electronics",
+    "tasks": [
+      "Set up frequency measurement",
+      "Calibrate multimeter",
+      "Measure various frequencies",
+      "Record measurements",
+      "Understand limitations"
+    ],
+    "resources": [
+      "https://www.fluke.com/en-us/learn/blog/digital-multimeters/how-to-measure-frequency",
+      "https://www.electronics-tutorials.ws/frequency-measurement"
+    ],
+    "description": "Learn to measure signal frequencies using a multimeter. Important for audio and oscillator projects.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd033')",
     "id": "33",
     "text": "Use an Op-Amp in a circuit",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon33.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon33.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn Op-Amp basics",
+      "Build amplifier circuit",
+      "Calculate gain values",
+      "Test input/output",
+      "Measure performance"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/opamp/opamp_1.html",
+      "https://learn.sparkfun.com/tutorials/operational-amplifier-basics"
+    ],
+    "description": "Master the use of operational amplifiers for analog signal processing.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd034')",
     "id": "34",
     "text": "Use a crowbar circuit to protect against over voltage",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon17.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon17.svg",
+    "set": "electronics",
+    "tasks": [
+      "Design protection circuit",
+      "Select components",
+      "Build crowbar circuit",
+      "Test protection limits",
+      "Verify response time"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/blog/crowbar-protection-circuit.html",
+      "https://www.allaboutcircuits.com/technical-articles/crowbar-circuit-overvoltage-protection"
+    ],
+    "description": "Learn to protect sensitive circuits from voltage spikes using crowbar protection.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd035')",
     "id": "35",
     "text": "Use a surge diode to protect a circuit",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon19.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon19.svg",
+    "set": "electronics",
+    "tasks": [
+      "Select appropriate TVS diode",
+      "Install protection circuit",
+      "Test surge protection",
+      "Verify clamping voltage",
+      "Document performance"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/diode/diode_7.html",
+      "https://www.littelfuse.com/technical-resources/technical-centers/tvs-diode.aspx"
+    ],
+    "description": "Implement surge protection using specialized diodes. Essential for robust circuit design.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd036')",
     "id": "36",
     "text": "Make something for a friend",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon36.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon36.svg",
+    "set": "electronics",
+    "tasks": [
+      "Plan useful project",
+      "Design user interface",
+      "Build reliable circuit",
+      "Test thoroughly",
+      "Document usage instructions"
+    ],
+    "resources": [
+      "https://www.instructables.com/circuits/gift/",
+      "https://learn.adafruit.com/category/wearables"
+    ],
+    "description": "Create a practical electronic project for someone else. Learn about user needs and reliability.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd037')",
     "id": "37",
     "text": "Make a motor controller with a H Bridge",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon37.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon37.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn H-bridge operation",
+      "Select driver IC",
+      "Build control circuit",
+      "Implement direction control",
+      "Add speed control"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/blog/h-bridge-switching.html",
+      "https://learn.sparkfun.com/tutorials/h-bridge-motor-control-circuit"
+    ],
+    "description": "Learn to control DC motors with direction and speed control using H-bridge drivers.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd038')",
     "id": "38",
     "text": "Make a counter with logic gates",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon38.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon38.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn digital logic basics",
+      "Design counter circuit",
+      "Build with logic ICs",
+      "Test counting sequence",
+      "Add display output"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/counter/count_1.html",
+      "https://www.allaboutcircuits.com/textbook/digital/chpt-11/asynchronous-counters/"
+    ],
+    "description": "Create a digital counter using basic logic gates. Introduction to digital electronics.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd039')",
     "id": "39",
     "text": "Apply solder paste to a PCB with a stencil",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon39.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon39.svg",
+    "set": "electronics",
+    "tasks": [
+      "Prepare PCB surface",
+      "Align stencil properly",
+      "Apply solder paste",
+      "Remove stencil cleanly",
+      "Inspect paste coverage"
+    ],
+    "resources": [
+      "https://www.sparkfun.com/tutorials/58",
+      "https://learn.adafruit.com/smt-manufacturing"
+    ],
+    "description": "Master the technique of applying solder paste for surface mount assembly.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd040')",
     "id": "40",
     "text": "Teach a friend an electronics skill",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon40.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon40.svg",
+    "set": "electronics",
+    "tasks": [
+      "Plan teaching approach",
+      "Prepare materials",
+      "Demonstrate technique",
+      "Guide practice session",
+      "Verify understanding"
+    ],
+    "resources": [
+      "https://www.instructables.com/class/Electronics-Class/",
+      "https://learn.sparkfun.com/tutorials"
+    ],
+    "description": "Share electronics knowledge by teaching others. Reinforces understanding and communication skills.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd041')",
     "id": "41",
     "text": "Make something with a 7 segment display",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon41.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon41.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn segment patterns",
+      "Wire display connections",
+      "Program number patterns",
+      "Add digit control",
+      "Implement animations"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/blog/7-segment-display-tutorial.html",
+      "https://learn.sparkfun.com/tutorials/7-segment-display-hookup-guide"
+    ],
+    "description": "Create a project using 7-segment displays. Learn about multiplexing and display control.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd042')",
     "id": "42",
     "text": "Measure voltage with an oscilloscope",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon42.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon42.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn scope controls",
+      "Set up proper probing",
+      "Adjust time/voltage scales",
+      "Capture waveforms",
+      "Analyze signals"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/how-to-use-an-oscilloscope",
+      "https://www.electronics-tutorials.ws/blog/basic-oscilloscope-tutorial.html"
+    ],
+    "description": "Learn to use an oscilloscope for voltage measurement and signal analysis.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd043')",
     "id": "43",
     "text": "Measure capacitor equivalent series resistance",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon43.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon43.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn ESR concepts",
+      "Set up test circuit",
+      "Take measurements",
+      "Calculate ESR value",
+      "Compare different caps"
+    ],
+    "resources": [
+      "https://www.electronics-notes.com/articles/basic_concepts/capacitance/esr-equivalent-series-resistance.php",
+      "https://www.allaboutcircuits.com/technical-articles/how-to-measure-esr"
+    ],
+    "description": "Learn to measure and understand capacitor ESR. Important for power supply design.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd044')",
     "id": "44",
     "text": "Make an Internet of Things (IoT) project",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon44.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon44.svg",
+    "set": "electronics",
+    "tasks": [
+      "Select IoT platform",
+      "Connect to network",
+      "Implement sensors",
+      "Create data pipeline",
+      "Build user interface"
+    ],
+    "resources": [
+      "https://www.instructables.com/circuits/iot/projects/",
+      "https://learn.adafruit.com/category/iot"
+    ],
+    "description": "Create a connected device project. Learn about networking and cloud services.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd045')",
     "id": "45",
     "text": "Make something with solar panels",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon45.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon45.svg",
+    "set": "electronics",
+    "tasks": [
+      "Size solar panel",
+      "Add charge controller",
+      "Install battery storage",
+      "Test power output",
+      "Monitor efficiency"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/solar-power",
+      "https://learn.adafruit.com/solar-powered-projects"
+    ],
+    "description": "Create a solar-powered electronic project. Learn about renewable energy systems.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd046')",
     "id": "46",
     "text": "Look at an audio input on an oscilloscope",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon46.svg"
-  },
-  {
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon46.svg",
+    "set": "electronics",
+    "tasks": [
+      "Set up audio input",
+      "Configure scope properly",
+      "Observe waveforms",
+      "Measure frequencies",
+      "Analyze harmonics"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/oscillator/oscillators.html",
+      "https://learn.sparkfun.com/tutorials/analog-vs-digital"
+    ],
+    "description": "Learn to visualize and analyze audio signals using an oscilloscope.",
+    "score": 2
+  },{
+    "_id": "ObjectId('66c6f04931aafd04fb3cd047')",
     "id": "47",
     "text": "Make a regulated power supply",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon47.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon47.svg",
+    "set": "electronics",
+    "tasks": [
+      "Design rectifier circuit",
+      "Add voltage regulator",
+      "Install filter capacitors",
+      "Test output stability",
+      "Add protection features"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/power-supply/power-supply-tutorial.html",
+      "https://learn.sparkfun.com/tutorials/voltage-regulators"
+    ],
+    "description": "Build a stable DC power supply from AC input. Learn about power conversion and regulation.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd048')",
     "id": "48",
     "text": "Use a MOSFET instead of a relay in a project",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon48.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon48.svg",
+    "set": "electronics",
+    "tasks": [
+      "Select appropriate MOSFET",
+      "Calculate gate drive",
+      "Design switching circuit",
+      "Add protection diodes",
+      "Test switching speed"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/transistor/tran_6.html",
+      "https://learn.sparkfun.com/tutorials/transistors"
+    ],
+    "description": "Learn to use MOSFETs for efficient power switching applications.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd049')",
     "id": "49",
     "text": "Make your own USB cable",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon49.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon49.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn USB pinout",
+      "Select proper wire gauge",
+      "Crimp connectors properly",
+      "Test continuity",
+      "Verify data transfer"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/working-with-wire",
+      "https://www.electronics-tutorials.ws/connectivity/usb-tutorial"
+    ],
+    "description": "Create custom USB cables. Learn about data communication standards and cable assembly.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd050')",
     "id": "50",
     "text": "Use an LED matrix in a project",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon50.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon50.svg",
+    "set": "electronics",
+    "tasks": [
+      "Wire matrix connections",
+      "Implement multiplexing",
+      "Program display patterns",
+      "Create animations",
+      "Optimize refresh rate"
+    ],
+    "resources": [
+      "https://learn.adafruit.com/32x16-32x32-rgb-led-matrix",
+      "https://learn.sparkfun.com/tutorials/led-matrix-basics"
+    ],
+    "description": "Master LED matrix control for dynamic display applications.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd051')",
     "id": "51",
     "text": "Filter unwanted noise from a signal",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon46.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon46.svg",
+    "set": "electronics",
+    "tasks": [
+      "Identify noise source",
+      "Design filter circuit",
+      "Calculate component values",
+      "Test filter response",
+      "Measure improvement"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/filter/filter_1.html",
+      "https://www.analog.com/en/design-center/filtering.html"
+    ],
+    "description": "Learn to design and implement filters for signal conditioning.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd052')",
     "id": "52",
-    "text": "Use a freqency analyser for a project",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon9.svg"
+    "text": "Use a frequency analyser for a project",
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon9.svg",
+    "set": "electronics",
+    "tasks": [
+      "Set up analyzer",
+      "Calibrate input",
+      "Capture frequency spectrum",
+      "Analyze harmonics",
+      "Document results"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/frequency-analysis",
+      "https://www.tek.com/en/documents/primer/fundamentals-real-time-spectrum-analysis"
+    ],
+    "description": "Learn to analyze signal frequency content using spectrum analysis.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd053')",
     "id": "53",
     "text": "Order a PCB with your design",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon47.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon47.svg",
+    "set": "electronics",
+    "tasks": [
+      "Complete PCB design",
+      "Generate gerber files",
+      "Select PCB manufacturer",
+      "Order prototype boards",
+      "Verify received PCBs"
+    ],
+    "resources": [
+      "https://learn.sparkfun.com/tutorials/pcb-basics",
+      "https://www.electronics-tutorials.ws/pcb-design"
+    ],
+    "description": "Experience the PCB manufacturing process from design to finished board.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd054')",
     "id": "54",
     "text": "Repair a broken trace on a PCB",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon54.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon54.svg",
+    "set": "electronics",
+    "tasks": [
+      "Identify broken trace",
+      "Plan repair method",
+      "Execute repair",
+      "Test connectivity",
+      "Verify circuit function"
+    ],
+    "resources": [
+      "https://www.instructables.com/PCB-Trace-Repair/",
+      "https://learn.adafruit.com/pcb-repair-basics"
+    ],
+    "description": "Learn PCB repair techniques for fixing damaged circuit boards.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd055')",
     "id": "55",
     "text": "Use automatic gain control",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon10.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon10.svg",
+    "set": "electronics",
+    "tasks": [
+      "Design AGC circuit",
+      "Select components",
+      "Build control loop",
+      "Test response time",
+      "Optimize performance"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/automatic-gain-control",
+      "https://www.analog.com/en/design-center/agc-circuits"
+    ],
+    "description": "Implement automatic gain control for dynamic signal processing.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd056')",
     "id": "56",
     "text": "Make a PID circuit with Op-Amps",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon33.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon33.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn PID theory",
+      "Design analog circuit",
+      "Calculate component values",
+      "Tune PID parameters",
+      "Test system response"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/pid-control",
+      "https://www.analog.com/en/design-center/pid-controllers"
+    ],
+    "description": "Create an analog PID controller for process control applications.",
+    "score": 4
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd057')",
     "id": "57",
     "text": "Teach a class on Electronics",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon40.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon40.svg",
+    "set": "electronics",
+    "tasks": [
+      "Prepare curriculum",
+      "Create learning materials",
+      "Deliver lectures",
+      "Guide lab sessions",
+      "Assess student progress"
+    ],
+    "resources": [
+      "https://www.instructables.com/teach/electronics/",
+      "https://learn.sparkfun.com/resources/teaching"
+    ],
+    "description": "Share electronics knowledge through formal instruction. Advanced mastery demonstration.",
+    "score": 4
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd058')",
     "id": "58",
     "text": "Learn PCB Design Software",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon47.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon47.svg",
+    "set": "electronics",
+    "tasks": [
+      "Choose design software",
+      "Learn component layout",
+      "Master routing tools",
+      "Create design rules",
+      "Generate output files"
+    ],
+    "resources": [
+      "https://www.kicad.org/help/documentation/",
+      "https://www.autodesk.com/products/eagle/overview"
+    ],
+    "description": "Master PCB design software for creating professional circuit boards.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd059')",
     "id": "59",
     "text": "Use an e-paper display in a project",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon59.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon59.svg",
+    "set": "electronics",
+    "tasks": [
+      "Select e-paper display",
+      "Interface with controller",
+      "Program display updates",
+      "Optimize refresh rate",
+      "Manage power consumption"
+    ],
+    "resources": [
+      "https://learn.adafruit.com/awesome-epaper-display",
+      "https://www.waveshare.com/wiki/E-Paper_Displays"
+    ],
+    "description": "Create projects using e-paper display technology. Learn about low-power displays.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd060')",
     "id": "60",
-    "text": "Build a Radio Frequency (RF)Project",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon60.svg"
+    "text": "Build a Radio Frequency (RF) Project",
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon60.svg",
+    "set": "electronics",
+    "tasks": [
+      "Learn RF basics",
+      "Select frequency band",
+      "Design RF circuit",
+      "Build antenna",
+      "Test transmission range"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/rf-design",
+      "https://learn.sparkfun.com/tutorials/rf-basics"
+    ],
+    "description": "Create wireless communication projects using RF technology.",
+    "score": 4
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd061')",
     "id": "61",
     "text": "Make an open source project",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon61.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon61.svg",
+    "set": "electronics",
+    "tasks": [
+      "Plan project scope",
+      "Create documentation",
+      "Share source files",
+      "Accept contributions",
+      "Maintain repository"
+    ],
+    "resources": [
+      "https://opensource.guide/",
+      "https://github.com/topics/open-hardware"
+    ],
+    "description": "Share your electronics project with the open-source community.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd062')",
     "id": "62",
     "text": "Use capacitive touch in a PCB design",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon62.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon62.svg",
+    "set": "electronics",
+    "tasks": [
+      "Design touch pads",
+      "Route sensing traces",
+      "Implement controller",
+      "Add touch detection",
+      "Test sensitivity"
+    ],
+    "resources": [
+      "https://www.microchip.com/design-centers/capacitive-touch",
+      "https://learn.sparkfun.com/tutorials/capacitive-touch-basics"
+    ],
+    "description": "Integrate capacitive touch sensing into PCB designs.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd063')",
     "id": "63",
     "text": "Make something with PCB Art",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon63.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon63.svg",
+    "set": "electronics",
+    "tasks": [
+      "Design artistic elements",
+      "Convert to PCB layers",
+      "Consider manufacturing limits",
+      "Order artistic PCB",
+      "Finish and display"
+    ],
+    "resources": [
+      "https://wiki.oshpark.com/pcb-art",
+      "https://www.instructables.com/PCB-Art/"
+    ],
+    "description": "Combine electronics and art through creative PCB design.",
+    "score": 2
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd064')",
     "id": "64",
     "text": "Make an electronic sculpture",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon64.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon64.svg",
+    "set": "electronics",
+    "tasks": [
+      "Design artistic concept",
+      "Plan electronic elements",
+      "Build structure",
+      "Integrate electronics",
+      "Create interactions"
+    ],
+    "resources": [
+      "https://www.instructables.com/circuits/art/projects/",
+      "https://learn.adafruit.com/category/art"
+    ],
+    "description": "Create interactive electronic art incorporating circuits and components.",
+    "score": 3
   },
   {
+    "_id": "ObjectId('66c6f04931aafd04fb3cd065')",
     "id": "65",
     "text": "Make a switch mode power supply",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon21.svg"
-  },
-  {
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon21.svg",
+    "set": "electronics",
+    "tasks": [
+      "Design switching circuit",
+      "Select controller IC",
+      "Calculate components",
+      "Build prototype",
+      "Test efficiency"
+    ],
+    "resources": [
+      "https://www.electronics-tutorials.ws/power/switch-mode-power-supply.html",
+      "https://www.ti.com/power-management/non-isolated-dc-dc-switching-regulators/overview.html"
+    ],
+    "description": "Create an efficient switching power supply for DC voltage conversion.",
+    "score": 4
+  },{
     "id": "66",
     "text": "Release a tutorial on a project you've made",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon66.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon66.svg",
+    "set": "electronics",
+    "tasks": [
+      "Task example 1",
+      "Task example 2"
+    ],
+    "resources": [
+      "Resource example 1",
+      "Resource example 2"
+    ],
+    "description": "Default description for this skill.",
+    "score": 1
   },
   {
     "id": "67",
     "text": "Create an FPGA Project",
-    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon67.svg"
+    "icon": "../../web_skill_trees_resources/svg/electronics_icons/icon67.svg",
+    "set": "electronics",
+    "tasks": [
+      "Task example 1",
+      "Task example 2"
+    ],
+    "resources": [
+      "Resource example 1",
+      "Resource example 2"
+    ],
+    "description": "Default description for this skill.",
+    "score": 1
   },
   {
     "id": "68",
     "text": "Write your own C/C++ library for a sensor from scratch",
-    "icon": "../../web_skill_trees_resources/../../web_skill_trees_resources/svg/electronics_icons/icon68.svg"
-  },
-  {
-    "id": null,
-    "text": "N/A",
-    "icon": "N/A"
+    "icon": "../../web_skill_trees_resources/../../web_skill_trees_resources/svg/electronics_icons/icon68.svg",
+    "set": "electronics",
+    "tasks": [
+      "Task example 1",
+      "Task example 2"
+    ],
+    "resources": [
+      "Resource example 1",
+      "Resource example 2"
+    ],
+    "description": "Default description for this skill.",
+    "score": 1
   }
 ]

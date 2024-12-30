@@ -3,59 +3,6 @@ let container = document.querySelector('.svg-container');
 window.onload = async function () {
     try {
 
-        // Create and style the top-right menu container
-        let topMenu = document.createElement('div');
-        topMenu.id = 'topMenu';
-        topMenu.style.position = 'fixed';
-        topMenu.style.top = '10px';
-        topMenu.style.right = '10px';
-        topMenu.style.display = 'flex';
-        topMenu.style.gap = '10px';
-        topMenu.style.padding = '10px 20px';
-        topMenu.style.backgroundColor = '#ffe865';
-        topMenu.style.borderRadius = '8px';
-        topMenu.style.boxShadow = '0px 4px 6px rgba(0, 0, 0, 0.1)';
-        topMenu.style.zIndex = '1000';
-        topMenu.style.fontSize = '1em';
-        topMenu.style.display = 'flex';
-        document.body.appendChild(topMenu);
-
-        let menuItems = [
-            { text: 'Leaderboard', link: '../views/leaderboard.html' },
-            { text: 'About', link: '/about' },
-            { text: 'Logout', link: 'logout' },
-            { text: 'Admin Dashboard' },
-        ];
-
-        menuItems.forEach(item => {
-            let menuItem = document.createElement('a');
-            menuItem.textContent = item.text;
-            menuItem.href = item.link;
-            menuItem.style.textDecoration = 'none';
-            menuItem.style.color = 'blue';
-            menuItem.style.fontWeight = 'bold';
-            menuItem.style.padding = '5px 10px';
-            menuItem.style.border = '1px solid transparent';
-            menuItem.style.borderRadius = '4px';
-            menuItem.style.transition = 'all 0.3s ease';
-
-            menuItem.addEventListener('mouseover', () => {
-                menuItem.style.backgroundColor = '#fff';
-                menuItem.style.color = '#000';
-                menuItem.style.border = '1px solid #ccc';
-            });
-
-            menuItem.addEventListener('mouseout', () => {
-                menuItem.style.backgroundColor = 'transparent';
-                menuItem.style.color = 'blue';
-                menuItem.style.border = '1px solid transparent';
-            });
-
-            menuItem.addEventListener('click', hhandleMenuItemClick);
-
-            topMenu.appendChild(menuItem);
-        });
-
         // Create and style the hover message container dynamically
         let hoverMessage = document.createElement('div');
         hoverMessage.id = 'hover-message';
@@ -95,7 +42,7 @@ window.onload = async function () {
             button.addEventListener('mouseenter', handleButtonHover);
             button.addEventListener('mouseleave', handleButtonHover);
             button.querySelector('.notebook-icon').addEventListener('click', handleNotebookIconClick);
-
+            button.querySelector('.pencil-icon').addEventListener('click', handlePencilIconClick);
         });
 
 
@@ -103,10 +50,6 @@ window.onload = async function () {
     } catch (error) {
         console.error('Error al cargar los datos:', error);
     }
-
-
-
-
 };
 
 function addRedCircle(carta) {
@@ -234,9 +177,6 @@ function createSkillCard(data, imagen) {
     return carta;
 }
 
-
-
-
 function handleButtonHover(event) {
     let button = event.currentTarget;
 
@@ -256,6 +196,17 @@ function handleButtonHover(event) {
     }
 }
 
+function handlePencilIconClick(event) {
+    //when clicked, serve the new ejs file
+    event.stopPropagation();
+
+    // Get the parent svg-wrapper element which contains the data-id
+    const parentWrapper = event.currentTarget.closest('.svg-wrapper');
+    const hexagonId = parentWrapper.getAttribute('data-id');
+
+    // Navigate to the pencil page with the hexagon ID
+    window.location.href = `/skill/edit/${hexagonId}`;
+}
 
 function handleNotebookIconClick(event) {
     //when clicked, serve the new ejs file
@@ -266,26 +217,5 @@ function handleNotebookIconClick(event) {
     const hexagonId = parentWrapper.getAttribute('data-id');
 
     // Navigate to the notebook page with the hexagon ID
-    window.location.href = `/skill/${hexagonId}`;
-}
-
-function hhandleMenuItemClick(event) {
-    event.preventDefault();
-    let menuItem = event.currentTarget;
-    switch (menuItem.textContent) {
-        case 'Leaderboard':
-            window.location.href = '/leaderboard';
-            break;
-        case 'About':
-            window.location.href = '/about';
-            break;
-        case 'Logout':
-            window.location.href = '/logout';
-            break;
-        case 'Admin Dashboard':
-            window.location.href = '/admin';
-            break;
-        default:
-            break;
-    }
+    window.location.href = `/skills/electronics/view/${hexagonId}`;
 }
