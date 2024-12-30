@@ -12,6 +12,20 @@ exports.getSkills = async (req, res) => {
     res.render('skills-list', { skills , error: null, skillTreeName });
 };
 
+exports.getEditSkillForm = (req, res) => {
+    res.render('edit', { skillTreeName: req.params.SkillTreeName});
+}
+
+exports.editSkill = async (req, res) => {
+    try {
+        const skillId = req.params.id;
+        await Skill.getSkillDetails(skillId);
+        res.redirect(`/skill/edit/${skillId}`);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to edit skill' });
+    }
+}
+
 exports.getAddSkillForm = (req, res) => {
     res.render('add-skill', { skillTreeName: req.params.skillTreeName });
 };

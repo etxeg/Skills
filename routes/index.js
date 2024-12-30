@@ -109,36 +109,33 @@ router.delete('/skill/:id', (req, res) => {
 });
 
 router.put('/skill/:id', async (req, res) => {
-  const hexagonId = req.params.id-1;
+  try {
+    const hexagonId = req.params.id;
 
-  const filePath = path.join(__dirname, '../public/scripts/data.json');
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return res.status(499).send('Ezin izan da JSON fitxategia irakurri');
+    const tasks = req.body.tasks.filter(task => task.trim() !== '');
+    const resources = req.body.resources.filter(resource => resource.trim() !== '');
+
+    const updatedSkill = await Skill.findOneAndUpdate(
+      { id: hexagonId },
+      {
+        text: req.body.text,
+        description: req.body.description,
+        tasks: tasks,
+        resources: resources,
+        score: req.body.score
+      },
+      { new: true }
+    );
+
+    if (!updatedSkill) {
+      return res.status(404).send({ success: false, message: 'Skill no encontrado' });
     }
 
-    let skills = JSON.parse(data);
-    //const index = skills.findIndex(skill => skill.id === hexagonId); //funtzio hau ez dago, aldatu
-
-    skills[hexagonId] = {
-      ...skills[hexagonId],
-      text: req.body.text,
-      description: req.body.description,
-      tasks: req.body.tasks,
-      resources: req.body.resources,
-      score: req.body.score
-    };
-
-    fs.writeFile(filePath, JSON.stringify(skills, null, 2), (err) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Error al escribir el archivo JSON');
-      } else {
-        res.status(200).send({ succes: true, message: 'Skill editatua' });
-      }
-    });
-  });
+      res.status(200).send({ success: true, message: 'Skill actualizado correctamente', skill: updatedSkill });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ success: false, message: 'Error al actualizar el skill', error });
+  }
 });
 
 module.exports = router;
