@@ -1,6 +1,6 @@
 const Badge = require('../models/badge.model');
 const User = require('../models/user.model');
-
+const bcrypt = require('bcryptjs');
 exports.getDashboard = (req, res) => {
     res.render('admin-dashboard', { username: req.session.user?.username, error: null });
 };
@@ -36,17 +36,35 @@ exports.deleteBadge = async (req, res) => {
 };
 
 exports.getUsers = async (req, res) => {
-    const users = await User.find({}, 'username admin');
+    const users = await User.find({});
     res.render('admin-users', { users });
 };
 
 exports.changePassword = async (req, res) => {
     const { userId, newPassword } = req.body;
     try {
-        const hashedPassword = await bcrypt.hash(newPassword, 10);
-        await User.findByIdAndUpdate(userId, { password: hashedPassword });
-        res.json({ success: true });
+        await User.findByIdAndUpdate(userId, newPassword);
+
     } catch (error) {
         res.status(500).json({ error: 'Failed to change password' });
     }
+};
+
+exports.editPassword = async (req, res) => {
+  try {
+    const username = req.params.username;
+
+    // Busca al usuario por el username
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).send('Usuario no encontrado.');
+    }
+
+    // Renderiza la vista de cambio de contraseña, pasando el usuario
+    res.render('change-password', { user });
+  } catch (error) {
+    console.error('Error al cargar la página de cambio de contraseña:', error);
+    res.status(500).send('Error al cargar la página.');
+  }
 };

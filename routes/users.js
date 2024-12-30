@@ -89,6 +89,49 @@ router.get('/logout', (req, res) => {
   });
 });
 
+router.post('/admin/users/change-password', async (req, res) => {
+  try {
+    const { userId, password } = req.body;
+
+    if (!password || !userId) {
+      return res.status(400).send('Datos incompletos.');
+    }
+
+    // Hashear la nueva contraseña
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Actualizar la contraseña del usuario
+    await User.findByIdAndUpdate(userId, { password: hashedPassword });
+
+    res.redirect('/admin/users'); // Redirige de vuelta a la lista de usuarios
+  } catch (error) {
+    console.error('Error al cambiar la contraseña:', error);
+    res.status(500).send('Error al cambiar la contraseña.');
+  }
+});
+
+
+router.get('/users/:username/change-password', async (req, res) => {
+  try {
+    const { userId, password } = req.body;
+
+    if (!password || !userId) {
+      return res.status(400).send('Datos incompletos.');
+    }
+
+    // Hashear la nueva contraseña
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Actualizar la contraseña del usuario
+    await User.findByIdAndUpdate(userId, { password: hashedPassword });
+
+    res.redirect('/admin/users'); // Redirige de vuelta a la lista de usuarios
+  } catch (error) {
+    console.error('Error al cambiar la contraseña:', error);
+    res.status(500).send('Error al cambiar la contraseña.');
+  }
+});
+
 //Edit aukera
 /*
 async function getData(id) {
