@@ -33,16 +33,32 @@ exports.getAddSkillForm = (req, res) => {
 exports.addSkill = async (req, res) => {
     const { text, description, tasks, resources, score, icon } = req.body;
     try {
-        await Skill.create({ text, description, tasks, resources, score, icon, set: req.params.skillTreeName });
+        // Convert comma-separated strings into arrays
+        const tasksArray = tasks ? tasks.split(',').map(task => task.trim()) : [];
+        const resourcesArray = resources ? resources.split(',').map(resource => resource.trim()) : [];
+
+        // Create a new skill
+        await Skill.create({ 
+            text, 
+            description, 
+            tasks: tasksArray, 
+            resources: resourcesArray, 
+            score, 
+            icon, 
+            set: req.params.skillTreeName 
+        });
+
+        // Redirect to the skill tree page
         res.redirect(`/skills/${req.params.skillTreeName}`);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Failed to add skill' });
     }
 };
 
 exports.getSkillDetails = async (req, res) => {
     const skill = await Skill.findById(req.params.hexagonId);
-    res.render('skill-details', { skill });
+    res.render('skill-details', { skill , error: null });
 };
 
 exports.verifySkill = async (req, res) => {
