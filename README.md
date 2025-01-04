@@ -13,7 +13,9 @@
 
 ## Gainontzeko Informazioa
 Praktika honek backend garapenean sakontzeko aukera paregabea eman digu. MongoDB eta Express bezalako tresnak integratzea interesgarria izan da. Lanaren emaitzarekin pozik gaude, eta erronkei aurre eginez, talde-lanean esperientzia handia hartu dugu.
-
+## Administratzailea
+Izena: Admin
+Kontraseña: Admin
 ## Oharrak
 Hemen lista bat funtzionatzea lortu ez dugun gauzekin:
 1. Edit skill lehioan sartzerako orduan ez da ikonoa bistaratzea lortu.
