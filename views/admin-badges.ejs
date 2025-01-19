@@ -4,37 +4,158 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Badges</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/stylesleaderboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/6.0.0-beta3/css/all.min.css">
 </head>
+<style>
+    /* Botón general */
+.btn {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Botón Editar (azul) */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+}
+
+.btn-primary:active {
+    background-color: #004085;
+    transform: scale(0.95); /* Efecto de clic */
+}
+
+/* Botón Eliminar (rojo) */
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.btn-danger:active {
+    background-color: #a71d2a;
+    transform: scale(0.95);
+}
+
+/* Ajustes específicos para los botones dentro de la tabla */
+.table .btn {
+    margin-right: 5px; /* Espaciado entre los botones */
+    padding: 6px 10px; /* Ajustar tamaño para caber bien en la tabla */
+    font-size: 13px;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Tabla general */
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.tabla th,
+.tabla td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle; /* Centra verticalmente */
+}
+
+/* Títulos de la tabla */
+.tabla th {
+    background-color: #333;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Ajustes para las filas */
+.tabla tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tabla tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Imágenes dentro de la tabla */
+.tabla img {
+    display: block;
+    margin: 0 auto; /* Centrar horizontalmente */
+    border-radius: 5px;
+}
+
+/* Botones dentro de la tabla */
+.tabla td .btn {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+</style>
 <body>
-    <%- include('partials/message') %>
+    
     <%- include('partials/username-display') %>
-    <h1>Badges</h1>
-    <table border="1">
+    <h1>Range Explanation</h1>
+    <table class="tabla">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Min Points</th>
-                <th>Max Points</th>
-                <th>Image</th>
+                <th>Range</th>
+                <th>Badge</th>
+                <th>Required Bitpoints</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <% badges.forEach(badge => { %>
+            <% if (badges && badges.length > 0) { %>
+                <% badges.forEach(badge => { %>
+                    <tr>
+                        <td><%= badge.rango %></td>
+                        <td><img src="<%= badge.png %>" alt="<%= badge.name %>" width="50" height="50"></td>
+                        <td><%= badge.bitpoints_min %> - <%= badge.bitpoints_max %></td>
+                        <td>
+                            <form action="/admin/badges/edit/<%= badge._id %>" method="GET" style="display:inline;">
+                                <button type="submit" class="btn btn-primary">Editar</button>
+                            </form>
+                            <form action="/admin/badges/delete/<%= badge._id %>" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this badge?')">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
                 <tr>
-                    <td><%= badge.name %></td>
-                    <td><%= badge.bitpoints_min %></td>
-                    <td><%= badge.bitpoints_max || 'N/A' %></td>
-                    <td><img src="<%= badge.image_url %>" alt="Badge Image" width="50"></td>
-                    <td>
-                        <a href="/admin/badges/edit/<%= badge._id %>">Edit</a>
-                        <form action="/admin/badges/delete/<%= badge._id %>" method="POST" style="display:inline;">
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
+                    <td colspan="3">No badges found.</td>
                 </tr>
-            <% }) %>
+            <% } %>
         </tbody>
     </table>
     <a href="/admin/dashboard">Back to Dashboard</a>

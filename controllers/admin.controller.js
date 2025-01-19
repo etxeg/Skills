@@ -8,19 +8,27 @@ exports.getDashboard = (req, res) => {
 
 exports.getBadges = async (req, res) => {
     const badges = await Badge.find().sort({ bitpoints_min: 1 });
+    //console.log(badges);
     res.render('admin-badges', { badges , error: null });
 };
 
 exports.getBadgeEditForm = async (req, res) => {
-    const badge = await Badge.findById(req.params.id);
-    if (!badge) return res.status(404).json({ error: 'Badge not found' });
-    res.render('edit-badge', { badge });
+    try {
+        const badge = await Badge.findById(req.params.id);
+        if (!badge) {
+            return res.status(404).render('edit-badge', { badge: null, error: 'Badge not found' });
+        }
+        res.render('edit-badge', { badge, error: null });
+    } catch (error) {
+        console.error('Error al cargar el formulario de edición:', error);
+        res.status(500).render('edit-badge', { badge: null, error: 'Error al cargar el formulario de edición.' });
+    }
 };
 
 exports.updateBadge = async (req, res) => {
-    const { name, bitpoints_min, bitpoints_max, image_url } = req.body;
+    const { rango, name, bitpoints_min, bitpoints_max, png } = req.body;
     try {
-        await Badge.findByIdAndUpdate(req.params.id, { name, bitpoints_min, bitpoints_max, image_url });
+        await Badge.findByIdAndUpdate(req.params.id, { rango, name, bitpoints_min, bitpoints_max, png });
         res.redirect('/admin/badges');
     } catch (error) {
         res.status(500).json({ error: 'Failed to update badge' });
