@@ -197,16 +197,22 @@ function handleButtonHover(event) {
 }
 
 function handlePencilIconClick(event) {
-    //when clicked, serve the new ejs file
     event.stopPropagation();
 
-    // Get the parent svg-wrapper element which contains the data-id
+    // Get the parent svg-wrapper element
     const parentWrapper = event.currentTarget.closest('.svg-wrapper');
-    const hexagonId = parentWrapper.getAttribute('data-id');
+    const hexagonId = parentWrapper?.getAttribute('data-id');
 
-    // Navigate to the pencil page with the hexagon ID
+    console.log('Navigating to edit page for ID:', hexagonId); // Debug log
+
+    if (!hexagonId) {
+        console.error('Hexagon ID not found!');
+        return;
+    }
+
     window.location.href = `/skills/electronics/edit/${hexagonId}`;
 }
+
 
 function handleNotebookIconClick(event) {
     //when clicked, serve the new ejs file

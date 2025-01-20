@@ -91,32 +91,41 @@ exports.deleteSkill = async (req, res) => {
 
 exports.getEditSkillForm = async (req, res) => {
     try {
-        const skill = await Skill.findById(req.params.skillID);
+        // Search for the skill using the custom `id` field
+        const skill = await Skill.findOne({ id: req.params.skillID });
         if (!skill) {
             return res.status(404).send('Skill not found');
         }
         res.render('skill-edit', { skill, skillTreeName: req.params.skillTreeName });
     } catch (error) {
+        console.error('Error fetching skill for editing:', error);
         res.status(500).send('Server error');
     }
 };
 
+
 exports.editSkill = async (req, res) => {
     const { text, description, tasks, resources, score, icon } = req.body;
     try {
-        await Skill.findByIdAndUpdate(req.params.skillID, {
-            text,
-            description,
-            tasks: tasks ? tasks.split(',') : [], // Assuming tasks are comma-separated
-            resources: resources ? resources.split(',') : [], // Assuming resources are comma-separated
-            score,
-            icon,
-        });
+        // Update the skill using the custom `id` field
+        await Skill.findOneAndUpdate(
+            { id: req.params.skillID },
+            {
+                text,
+                description,
+                tasks: tasks ? tasks.split(',') : [], // Assuming tasks are comma-separated
+                resources: resources ? resources.split(',') : [], // Assuming resources are comma-separated
+                score,
+                icon,
+            }
+        );
         res.redirect(`/skills/${req.params.skillTreeName}`);
     } catch (error) {
+        console.error('Error updating skill:', error);
         res.status(500).send('Failed to update skill');
     }
 };
+
 
 exports.submitUserSkill = async (req, res) => {
     try {
