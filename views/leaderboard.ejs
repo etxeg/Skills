@@ -14,15 +14,24 @@
     <table class="tabla">
         <thead>
             <tr>
-                <th>Range</th>
-                <th>Badge</th>
-                <th>Required Bitpoints</th>
+                <th>Username</th>
+                <th>Score</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Las filas dinámicas serán añadidas aquí por JavaScript -->
+            <% if (users && users.length > 0) {%>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td><%= user.username %></td>
+                        <td><%= user.score %></td>
+                    </tr>
+                <% }); %>
+            <% } else { %>    
+                <tr>
+                    <td colspan="3"> No users found.</td>
+                </tr>
+            <% } %>
         </tbody>
     </table>
-    <script src="js/leaderboard.js"></script>
 </body>
 </html>

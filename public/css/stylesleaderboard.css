@@ -53,6 +53,8 @@ body {
   
   /* Estilo para la celda del ID */
   .tabla td:first-child {
+    text-align: center;
+    vertical-align: middle;
     font-weight: bold;
     color: #666;
     width: 80px;

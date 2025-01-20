@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const Skill = require('../models/skill.model');
 const Icon = require('../models/icons.model');
+const User = require('../models/user.model');
 const mongoose = require('mongoose');
 
 router.use(express.static(path.join(__dirname, 'public')));
@@ -59,8 +60,14 @@ router.get('/skill/:id', async function(req, res, next) {
   });
 });
 
-router.get('/leaderboard', function(req, res, next) {
-  res.render('leaderboard', { title: 'Leaderboard' });
+router.get('/leaderboard', async function(req, res, next) {
+  
+  const users = await User.find({});
+
+  res.render('leaderboard', { 
+    title: 'Leaderboard',
+    users:  users
+  });
 }); 
 
 router.get('/about', function(req, res, next) {
