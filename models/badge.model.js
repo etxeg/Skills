@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const BadgeSchema = new mongoose.Schema({
+    rango: {
+        type: String,
+        required: true,
+        unique: true
+    },
     name: {
         type: String,
         required: true,
@@ -13,7 +18,7 @@ const BadgeSchema = new mongoose.Schema({
     bitpoints_max: {
         type: Number
     },
-    image_url: {
+    png: {
         type: String
     }
 });

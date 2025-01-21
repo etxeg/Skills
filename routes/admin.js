@@ -4,6 +4,7 @@ const { isAuthenticatedAdmin } = require('../middlewares/auth.middleware.js');
 const adminController = require('../controllers/admin.controller');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user.model');
+const Badge = require('../models/badge.model');
 
 // Endpoints
 router.get('/dashboard', isAuthenticatedAdmin, adminController.getDashboard);
@@ -33,6 +34,4 @@ router.post('/change-password', isAuthenticatedAdmin, async (req, res) => {
       res.status(500).send('Error al cambiar la contraseña.');
     }
   });
-  
-
 module.exports = router;

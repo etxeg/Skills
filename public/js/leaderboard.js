@@ -1,6 +1,6 @@
 window.onload = async function() {
     try {
-        let response = await fetch('databadget.json');
+        let response = await fetch('/scripts/databadget.json');
         if (!response.ok) throw new Error('Error al cargar el JSON');
 
         let data = await response.json();
