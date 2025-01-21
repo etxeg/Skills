@@ -2,7 +2,6 @@ let container = document.querySelector('.svg-container');
 
 window.onload = async function () {
     try {
-
         // Create and style the hover message container dynamically
         let hoverMessage = document.createElement('div');
         hoverMessage.id = 'hover-message';
@@ -21,21 +20,57 @@ window.onload = async function () {
         hoverMessage.style.alignItems = 'center';
         document.body.appendChild(hoverMessage);
 
-        let response = await fetch('/scripts/data.json');
-        if (!response.ok) throw new Error('Error al cargar el JSON');
+        // Fetch skills from the backend API
+        let response = await fetch('/skills/api/skills');
+        if (!response.ok) throw new Error('Error fetching skills from the API');
 
-        let data = await response.json();
+        let skills = await response.json(); // Parse JSON response
+
+        // Fetch user skills from the backend API
+        let response2 = await fetch('/userSkill/api/user-skills');
+        if (!response2.ok) throw new Error('Error fetching user skills from the API');
+
+        let userSkills = await response2.json();
 
         let cardsArray = [];
 
-        for (let i = 0; i < data.length - 1; i++) {
-            let imagen = `/electronics/icons/icon${data[i].id}.svg`;
-            let carta = createSkillCard(data[i], imagen);
+        for (let i = 0; i < skills.length; i++) {
+            let imagen = `/electronics/icons/icon${skills[i].id}.svg`; // Adjust path as needed
+            let carta = createSkillCard(skills[i], imagen);
             cardsArray.push(carta);
         }
 
-        addRedCircle(cardsArray[0]);
-        addGreenCircle(cardsArray[1]);
+        let skillCounts = {};
+        let skillCounts2 = {};
+        userSkills.forEach(userSkill => {
+            if (!userSkill.verified) {
+                if (skillCounts[userSkill.skill]) {
+                    skillCounts[userSkill.skill]++;
+                } else {
+                    skillCounts[userSkill.skill] = 1;
+                }
+            }else{
+                if (skillCounts2[userSkill.skill]) {
+                    skillCounts2[userSkill.skill]++;
+                } else {
+                    skillCounts2[userSkill.skill] = 1;
+                }
+            }
+
+        });
+
+        userSkills.forEach(userSkill => {
+            // Find the card element with the matching skill ID (using data-id attribute)
+            let skillId = userSkill.skill;
+            let hexagon = document.querySelector(`[data-id="${userSkill.skill}"]`);
+            if (hexagon && skillCounts[skillId] >= 1) {
+                let count = skillCounts[skillId];
+                addRedCircle(hexagon, count); // Add red circle if there's a match
+            }else if(hexagon && skillCounts2[skillId] >= 1){
+                let count2 = skillCounts2[skillId];
+                addGreenCircle(hexagon, count2);
+            }
+        });
 
         let buttons = document.querySelectorAll('.svg-wrapper');
         buttons.forEach(button => {
@@ -45,20 +80,19 @@ window.onload = async function () {
             button.querySelector('.pencil-icon').addEventListener('click', handlePencilIconClick);
         });
 
-
-
     } catch (error) {
-        console.error('Error al cargar los datos:', error);
+        console.error('Error loading skills:', error);
     }
 };
 
-function addRedCircle(carta) {
+
+function addRedCircle(carta, count) {
     let redIcon = document.createElement('div');
     redIcon.classList.add('icon', 'red-icon');
-    redIcon.innerHTML = '🔴';  // You can replace with SVG icon if available
+    redIcon.innerHTML = '🔴';
 
     let redNumber = document.createElement('span');
-    redNumber.textContent = '1'; // Change this to the desired number
+    redNumber.textContent = count; // Set the number dynamically
     redNumber.style.position = 'absolute';
     redNumber.style.top = '55%';
     redNumber.style.left = '50%';
@@ -71,14 +105,14 @@ function addRedCircle(carta) {
     carta.appendChild(redIcon);
 }
 
-function addGreenCircle(carta) {
+function addGreenCircle(carta, count) {
     let greenIcon = document.createElement('div');
     greenIcon.classList.add('icon', 'green-icon');
-    greenIcon.innerHTML = '🟢';  // You can replace with SVG icon if available
+    greenIcon.innerHTML = '🟢';
     carta.querySelector('polygon').style.fill = 'green';
 
     let greenNumber = document.createElement('span');
-    greenNumber.textContent = '1'; // Change this to the desired number
+    greenNumber.textContent = count; // Set the number dynamically
     greenNumber.style.position = 'absolute';
     greenNumber.style.top = '55%';
     greenNumber.style.left = '50%';
@@ -91,6 +125,7 @@ function addGreenCircle(carta) {
 
     carta.appendChild(greenIcon);
 }
+
 
 function createSkillCard(data, imagen) {
 

@@ -9,7 +9,7 @@ exports.redirectToDefaultTree = (req, res) => {
 exports.getSkills = async (req, res) => {
     skillTreeName = req.params.skillTreeName;
     const skills = await Skill.find({ set: skillTreeName });
-    res.render('skills-list', { skills , error: null, skillTreeName });
+    res.render('skills-list', { skills, error: null, skillTreeName });
 };
 
 exports.getAddSkillForm = (req, res) => {
@@ -26,15 +26,15 @@ exports.addSkill = async (req, res) => {
         const resourcesArray = resources ? resources.split(',').map(resource => resource.trim()) : [];
 
         // Create a new skill
-        await Skill.create({ 
+        await Skill.create({
             id: nextId,
-            text, 
-            description, 
-            tasks: tasksArray, 
-            resources: resourcesArray, 
-            score, 
-            icon, 
-            set: req.params.skillTreeName 
+            text,
+            description,
+            tasks: tasksArray,
+            resources: resourcesArray,
+            score,
+            icon,
+            set: req.params.skillTreeName
         });
 
         // Redirect to the skill tree page
@@ -47,24 +47,29 @@ exports.addSkill = async (req, res) => {
 
 exports.getSkillDetails = async (req, res) => {
     const skillID = req.params.skillID;
-    const skill = await Skill.findOne({id: skillID});
+    const skill = await Skill.findOne({ id: skillID });
     const userId = req.session.user.user?.username;
     console.log(skill);
-    res.render('skill-details', { skill , error: null, userId });
+    const userSkills = await UserSkill.find({skill: skillID});
+    res.render('skill-details', { skill, error: null, userId , userSkills});
 };
 
 exports.verifySkill = async (req, res) => {
-    const { userSkillId, approved } = req.body;
     try {
-        const userSkill = await UserSkill.findById(userSkillId);
-        userSkill.verifications.push({ user: req.user._id, approved });
-        userSkill.verified = userSkill.verifications.every(v => v.approved);
-        await userSkill.save();
-        res.json({ success: true });
+        const { skillTreeName, skillID } = req.params;
+        const { userSkillId } = req.body;
+
+        // Perform verification logic (e.g., update database, mark skill as verified)
+        await UserSkill.findByIdAndUpdate(userSkillId, { verified: true });
+
+        // Respond with success and the redirect URL
+        res.json({ success: true, redirectUrl: '/' }); // Redirect to homepage
     } catch (error) {
-        res.status(500).json({ error: 'Failed to verify skill' });
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Error verifying skill' });
     }
 };
+
 
 exports.deleteSkill = async (req, res) => {
     try {
@@ -105,7 +110,7 @@ exports.editSkill = async (req, res) => {
                 icon,
             }
         );
-        res.redirect(`/skills/${req.params.skillTreeName}`);
+        res.redirect(`/`);
     } catch (error) {
         console.error('Error updating skill:', error);
         res.status(500).send('Failed to update skill');

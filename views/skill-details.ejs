@@ -6,108 +6,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill Details</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti"></script> <!-- Add confetti script -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti"></script>
 </head>
 
 <body>
     <%- include('partials/message') %>
-        <%- include('partials/username-display') %>
-            <h1>
-                <%= skill.text %>
-            </h1>
-            <p>
-                <%= skill.description %>
-            </p>
+    <%- include('partials/username-display') %>
 
-            <h2>Tasks</h2>
-            <ul>
-                <% skill.tasks.forEach((task, index)=> { %>
-                    <li>
-                        <label>
-                            <input type="checkbox" class="task-checkbox" data-index="<%= index %>">
-                            <%= task %>
-                        </label>
-                    </li>
-                    <% }) %>
-            </ul>
+    <h1><%= skill.text %></h1>
+    <p><%= skill.description %></p>
 
-            <h2>Resources</h2>
-            <ul>
-                <% skill.resources.forEach(resource=> { %>
-                    <li><a href="<%= resource %>">
-                            <%= resource %>
-                        </a></li>
-                    <% }) %>
-            </ul>
+    <h2>Tasks</h2>
+    <ul>
+        <% skill.tasks.forEach((task, index) => { %>
+        <li>
+            <label>
+                <input type="checkbox" class="task-checkbox" data-index="<%= index %>">
+                <%= task %>
+            </label>
+        </li>
+        <% }) %>
+    </ul>
 
-            <a href="/">Back to Skills</a>
+    <h2>Resources</h2>
+    <ul>
+        <% skill.resources.forEach(resource => { %>
+        <li><a href="<%= resource %>"><%= resource %></a></li>
+        <% }) %>
+    </ul>
 
-            <!-- Hidden elements that will be shown when all tasks are checked -->
-            <div id="hidden-elements" style="display: none;">
-                <h3>All tasks completed! Great job!</h3>
+    <a href="/">Back to Skills</a>
 
-                <!-- Text input and submit button -->
-                <form id="feedback-form" method="POST" action="/skills/<%= skill._id %>/submitUserSkill">
-                    <input type="text" id="feedback" name="feedback" placeholder="Enter your feedback..." required>
-                    <input type="hidden" id="user-id" name="userId" value="<%= user.username %>">
-                    <input type="hidden" id="skill-id" name="skillId" value="<%= skill.id %>">
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
+    <div id="hidden-elements" style="display: none;">
+        <h3>All tasks completed! Great job!</h3>
+        <form id="feedback-form" method="POST" action="/skills/<%= skill._id %>/submitUserSkill">
+            <input type="text" id="feedback" name="feedback" placeholder="Enter your feedback..." required>
+            <input type="hidden" id="user-id" name="userId" value="<%= user.username %>">
+            <input type="hidden" id="skill-id" name="skillId" value="<%= skill.id %>">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
-            <script>
-                // Function to check if all tasks are checked
-                function checkAllTasksCompleted() {
-                    const checkboxes = document.querySelectorAll('.task-checkbox');
-                    const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+    <h2>User Skills</h2>
+    <ul id="user-skills-list">
+        <% if (userSkills.length > 0) { %>
+        <% userSkills.forEach(userSkill => { %>
+        <li>
+            <strong><%= userSkill.user %></strong> -
+            <%= userSkill.completed ? 'Completed' : 'Not Completed' %><br>
+            <%= userSkill.completedAt ? 'Completed at: ' + new Date(userSkill.completedAt).toLocaleString() : 'Not Completed Yet' %><br>
+            <%= userSkill.evidence ? 'Evidence: ' + userSkill.evidence : '' %><br>
+            <%= userSkill.verified ? 'Verified' : 'Not Verified' %>
 
-                    if (allChecked) {
-                        // Trigger Confetti Animation
-                        confetti({
-                            particleCount: 200,
-                            spread: 70,
-                            origin: { y: 0.6 }
+            <% if (!userSkill.verified) { %>
+            <button class="verify-btn" data-user-skill-id="<%= userSkill._id %>">Verify</button>
+            <% } else { %>
+            <p>Already Verified</p>
+            <% } %>
+        </li>
+        <% }) %>
+        <% } else { %>
+        <p>No users have completed this skill yet.</p>
+        <% } %>
+    </ul>
+
+    <script>
+        // Function to check if all tasks are completed
+        function checkAllTasksCompleted() {
+            const checkboxes = document.querySelectorAll('.task-checkbox');
+            const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+
+            if (allChecked) {
+                // Trigger confetti animation
+                confetti({
+                    particleCount: 200,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+
+                // Show hidden elements
+                document.getElementById('hidden-elements').style.display = 'block';
+            }
+        }
+
+        // Add event listeners to task checkboxes
+        document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', checkAllTasksCompleted);
+        });
+
+        // Feedback form submission
+        document.getElementById('feedback-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const feedback = document.getElementById('feedback').value;
+            const skillId = document.getElementById('skill-id').value;
+            const userId = document.getElementById('user-id').value;
+
+            fetch(`/skills/${skillId}/submitUserSkill`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ feedback, skillId, userId })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Feedback submitted!');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+
+        // Verify button functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.verify-btn').forEach(button => {
+                button.addEventListener('click', async () => {
+                    const userSkillId = button.getAttribute('data-user-skill-id');
+                    const skillId = '<%= skill.id %>';
+
+                    try {
+                        const response = await fetch(`/skills/electronics/${skillId}/verify`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ userSkillId }),
                         });
 
-                        // Show hidden elements (text input and button)
-                        document.getElementById('hidden-elements').style.display = 'block';
+                        if (!response.ok) {
+                            throw new Error('Verification failed.');
+                        }
+
+                        // Redirect to the homepage upon success
+                        window.location.href = '/';
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Error verifying user skill.');
                     }
-                }
-
-                // Listen to changes in the checkboxes and check if all are checked
-                document.querySelectorAll('.task-checkbox').forEach((checkbox) => {
-                    checkbox.addEventListener('change', checkAllTasksCompleted);
                 });
-
-
-                document.getElementById('feedback-form').addEventListener('submit', function (event) {
-                    event.preventDefault();
-
-                    const feedback = document.getElementById('feedback').value;
-                    const skillId = document.getElementById('skill-id').value;
-                    const userId = document.getElementById('user-id').value;
-
-                    // Send the data to the server (AJAX)
-                    fetch(`/skills/${skillId}/submitUserSkill`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            feedback: feedback,
-                            skillId: skillId,
-                            userId: userId
-                        })
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            alert("Feedback submitted!");
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        });
-                });
-            </script>
+            });
+        });
+    </script>
 </body>
 
 </html>
