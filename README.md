@@ -1,13 +1,20 @@
-# Skills - Backend Praktika
+# Skills
 
-## Taldearen Izena
-- **AIA**
+Plataforma web para el aprendizaje de habilidades.
 
-## Partaideen Izen Abizenak
-1. Aimar San Martin  
-2. Ander Etxegarai  
-3. Iker Zaldua  
+## Tecnologías
+- Node.js + Express
+- MongoDB
+- EJS
+- Nginx + PM2 (despliegue en Azure)
 
+## Instalación
+1. Clona el repositorio
+2. Instala dependencias: `npm install`
+3. Configura las variables de entorno en un archivo `.env`
+4. Ejecuta: `npm start`
 
-## Gainontzeko Informazioa
-Praktika honek backend garapenean sakontzeko aukera paregabea eman digu. MongoDB eta Express bezalako tresnak integratzea interesgarria izan da. Lanaren emaitzarekin pozik gaude, eta erronkei aurre eginez, talde-lanean esperientzia handia hartu dugu.
+## Equipo
+- Aimar San Martin
+- Ander Etxegarai  
+- Iker Zaldua
